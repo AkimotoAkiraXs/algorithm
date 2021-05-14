@@ -7,7 +7,7 @@ package main;
  * @Description:
  */
 
-public class LiKou {
+public class LeetCode {
     public static void main(String[] args) {
         String ans = Id12.run(1988);
         System.out.println(ans);

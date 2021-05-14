@@ -1,4 +1,4 @@
-package akimoto.akira.likou;
+package akimoto.akira.LeetCode;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
