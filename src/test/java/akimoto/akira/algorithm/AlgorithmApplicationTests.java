@@ -1,10 +1,10 @@
-package akimoto.akira.LeetCode;
+package akimoto.akira.algorithm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LikouApplicationTests {
+class AlgorithmApplicationTests {
 
     @Test
     void contextLoads() {

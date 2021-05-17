@@ -1,13 +1,13 @@
-package akimoto.akira.LeetCode;
+package akimoto.akira.algorithm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LikouApplication {
+public class AlgorithmApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LikouApplication.class, args);
+        SpringApplication.run(AlgorithmApplication.class, args);
     }
 
 }

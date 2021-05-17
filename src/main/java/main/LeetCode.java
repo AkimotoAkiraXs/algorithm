@@ -1,5 +1,7 @@
 package main;
 
+import java.util.*;
+
 /**
  * @Author Yuri
  * @Date 2021/5/14 14:59
@@ -9,13 +11,74 @@ package main;
 
 public class LeetCode {
     public static void main(String[] args) {
-        String ans = Id12.run(1988);
-        System.out.println(ans);
+
+    }
+}
+
+
+class Id993 {
+    public List recursion(TreeNode root, int parentNum, int num, int degree) {
+        if (num == root.val) {
+            List<Integer> res = new ArrayList<>();
+            res.add(degree);
+            res.add(parentNum);
+            return res;
+        }
+        if (root.left != null) {
+            List listLeft = recursion(root.left, root.val, num, degree + 1);
+            if (listLeft != null) {
+                return listLeft;
+            }
+        }
+        if (root.right != null) {
+            List rightList = recursion(root.right, root.val, num, degree + 1);
+            if (rightList != null) {
+                return rightList;
+            }
+        }
+        return null;
+    }
+
+    public boolean isCousins(TreeNode root, int x, int y) {
+        List listX = recursion(root, root.val, x, 0);
+        List listY = recursion(root, root.val, y, 0);
+        if (listX.size() == 0 || listY.size() == 0 || listX.get(0) != listY.get(0) || listX.get(1) == listY.get(1)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+
+class Id1647 {
+    public static int minDeletions(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 'a'; i <= 'z'; i++) {
+            map.put((char) i, 0);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            map.put(c, map.get(c) + 1);
+        }
+        List<Integer> n = new ArrayList<>(map.values());
+        for (int i = 0; i < 26; i++) {
+            n.remove((Object) 0);
+        }
+        n.sort((o1, o2) -> o2 - o1);
+        int ans = 0;
+        for (int i = 1; i < n.size(); i++) {
+            while (n.get(i) >= n.get(i - 1) && n.get(i) > 0) {
+                ans++;
+                n.set(i, n.get(i) - 1);
+            }
+        }
+        return ans;
     }
 }
 
 class Id12 {
-    public static String run(int num) {
+    public static String intToRoman(int num) {
         String[] rChar = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         int[] n = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String ans = "";
