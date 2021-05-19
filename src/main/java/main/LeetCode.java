@@ -15,6 +15,52 @@ public class LeetCode {
     }
 }
 
+class Id1738{
+
+}
+
+class Id55 {
+
+    int[] s;
+    int length;
+
+    public boolean jump(int index, boolean res) {
+        if (res || s[index] == -1) {
+            return res;
+        }
+        int k = s[index];
+        s[index] = -1; //标记位置
+        if (k + index + 1 >= length) {
+            return true;
+        }
+        for (int i = 1; i <= k; i++) {
+            if (jump(index + i, res)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean canJump(int[] nums) {
+        s = nums;
+        length = nums.length;
+        return jump(0, false);
+    }
+
+    //标准题解
+    public boolean canJumpAC(int[] nums) {
+        int r = 0;  //能跳到最右边的点
+        for (int i = 0; i < nums.length; ++i) {
+            if (i <= r) {   //如果i小于等于r代表能到达i这个点
+                r = Math.max(r, i + nums[i]);   //更新能达到的最右边的点
+                if (r >= nums.length - 1) {
+                    return true;//如果最右边的点超过了数组大小，返回true
+                }
+            }
+        }
+        return false;   //说明达不到最右边，返回false
+    }
+}
 
 class Id993 {
     public List recursion(TreeNode root, int parentNum, int num, int degree) {
@@ -49,7 +95,6 @@ class Id993 {
         }
     }
 }
-
 
 class Id1647 {
     public static int minDeletions(String s) {
