@@ -1,6 +1,8 @@
 package main;
 
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @Author Yuri
@@ -15,8 +17,99 @@ public class LeetCode {
     }
 }
 
-class Id1738{
 
+class Id664 {
+    /**
+     * 简单dp 因为是从头开始 所ary[j][i]表示区间j-i的最小打印数
+     */
+    public int strangePrinter(String s) {
+        int size = s.length();
+        int[][] ary = new int[size + 1][size + 1];
+        for (int i = 0; i < size; i++) {
+            ary[i][i] = 1;
+            for (int j = i - 1; j >= 0; j--) {
+                int minn = Integer.MAX_VALUE;
+                if (s.charAt(i) == s.charAt(j)) {
+                    ary[j][i] = ary[j + 1][i];
+                } else {
+                    for (int k = i; k > j ; k--) {
+                        minn = Math.min(minn, ary[j][k - 1] + ary[k][i]);
+                    }
+                    ary[j][i] = minn;
+                }
+            }
+        }
+        return ary[0][size - 1];
+    }
+}
+
+class Id692 {
+    //Map排序
+    public List<String> topKFrequent(String[] words, int k) {
+        HashMap<String, Integer> map = new HashMap<>();
+        for (String word :
+                words) {
+            map.put(word, map.getOrDefault(word, 0) + 1);
+        }
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+        list.sort(new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                if (o1.getValue().equals(o2.getValue())) {
+                    return o1.getKey().compareTo(o2.getKey());
+                }
+                return o2.getValue() - o1.getValue();
+            }
+        });
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+            res.add(list.get(i).getKey());
+        }
+        return res;
+    }
+}
+
+class Id1 {
+    //暴力
+    public int[] twoSum(int[] nums, int target) {
+        List<Integer> ary = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        for (int i = 0; i < ary.size(); i++) {
+            int n = ary.get(i);
+            int j = 0;
+            j = ary.lastIndexOf(target - n);
+            if (j != i && j != -1) {
+                return new int[]{j, i};
+            }
+        }
+        return new int[0];
+    }
+
+    //哈希表 O(1)
+    public int[] twoSumHashTable(int[] nums, int target) {
+        HashMap<Integer, Integer> hash = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (hash.containsKey(target - nums[i])) {
+                return new int[]{hash.get(target - nums[i]), i};
+            }
+            hash.put(nums[i], i);
+        }
+        return new int[0];
+    }
+}
+
+class Id1738 {
+    public int kthLargestValue(int[][] matrix, int k) {
+        List<Integer> num = new ArrayList<>();
+        int[][] cmp = new int[1005][1005];
+        for (int i = 1; i <= matrix.length; i++) {
+            for (int j = 1; j <= matrix[i - 1].length; j++) {
+                cmp[i][j] = cmp[i - 1][j - 1] ^ cmp[i - 1][j] ^ cmp[i][j - 1] ^ matrix[i - 1][j - 1];
+                num.add(cmp[i][j]);
+            }
+        }
+        num.sort(Comparator.reverseOrder());
+        return num.get(k - 1);
+    }
 }
 
 class Id55 {
@@ -63,7 +156,7 @@ class Id55 {
 }
 
 class Id993 {
-    public List recursion(TreeNode root, int parentNum, int num, int degree) {
+    public List recursion(TreeNode993 root, int parentNum, int num, int degree) {
         if (num == root.val) {
             List<Integer> res = new ArrayList<>();
             res.add(degree);
@@ -85,7 +178,7 @@ class Id993 {
         return null;
     }
 
-    public boolean isCousins(TreeNode root, int x, int y) {
+    public boolean isCousins(TreeNode993 root, int x, int y) {
         List listX = recursion(root, root.val, x, 0);
         List listY = recursion(root, root.val, y, 0);
         if (listX.size() == 0 || listY.size() == 0 || listX.get(0) != listY.get(0) || listX.get(1) == listY.get(1)) {

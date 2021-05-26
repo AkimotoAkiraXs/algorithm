@@ -6,19 +6,19 @@ package main;
  * @Version 1.0
  * @Description:
  */
-public class TreeNode {
+public class TreeNode993 {
     int val;
-    TreeNode left;
-    TreeNode right;
+    TreeNode993 left;
+    TreeNode993 right;
 
-    TreeNode() {
+    TreeNode993() {
     }
 
-    TreeNode(int val) {
+    TreeNode993(int val) {
         this.val = val;
     }
 
-    TreeNode(int val, TreeNode left, TreeNode right) {
+    TreeNode993(int val, TreeNode993 left, TreeNode993 right) {
         this.val = val;
         this.left = left;
         this.right = right;
