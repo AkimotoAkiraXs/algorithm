@@ -39,61 +39,56 @@
 // 0 <= relation[i][0],relation[i][1] < n 且 relation[i][0] != relation[i][1] 
 // 
 // Related Topics 深度优先搜索 广度优先搜索 图 动态规划 
-// 👍 71 👎 0
+// 👍 165 👎 0
 
 
 /*
  * Id：LCP 07
  * Name：传递信息
- * Date：2021-07-01 09:29:47
+ * Date：2021-08-17 14:56:38
  */
 package leetcode.editor.cn;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ChuanDiXinXi {
     public static void main(String[] args) {
         Solution solution = new ChuanDiXinXi().new Solution();
-        int[][] relation = new int[][]{{0, 2}, {2, 1}, {3, 4}, {2, 3}, {1, 4}, {2, 0}, {0, 4}};
-        solution.numWays(5, relation, 3);
-
+        int[][] s = new int[][]{{0, 2}, {2, 1}, {3, 4}, {2, 3}, {1, 4}, {2, 0}, {0, 4}};
+        solution.numWays(5, s, 3);
+        System.out.println("Hello world");
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        int N, K, ans = 0;
-        boolean[][] flag;
-        Map<Integer, List<Integer>> map;
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        int N, K;
+        int ans = 0;
 
-        void dfs(int i, int lop) {
-            if (lop == K) {
-                if (i == N - 1) {
-                    ans++;
-                }
-                flag = new boolean[N][N];
+        public void dfs(int b, int temp) {
+            if (temp > K) {
                 return;
             }
-            List<Integer> list = map.get(i);
-            for (int j = 0; j < list.size(); j++) {
-                if (flag[i][j]) {
-                    continue;
-                }
-                dfs(list.get(j), lop + 1);
-                flag[i][j] = true;
+            if (b == N - 1 && temp == K) {
+                ans++;
+                return;
+            }
+            for (int i : map.get(b)) {
+                dfs(i, temp+1);
             }
         }
 
         public int numWays(int n, int[][] relation, int k) {
             N = n;
             K = k;
-            flag = new boolean[n][n];
-            map = new HashMap<>();
             for (int i = 0; i < n; i++) {
-                List<Integer> list = new LinkedList<>();
-                map.put(i, list);
+                map.put(i, new ArrayList<>());
             }
-            for (int[] ints : relation) {
-                map.get(ints[0]).add(ints[1]);
+            for (int[] i : relation) {
+                map.get(i[0]).add(i[1]);
             }
             dfs(0, 0);
             return ans;
