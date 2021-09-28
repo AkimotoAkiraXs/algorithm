@@ -59,8 +59,35 @@ public class NumberOfIslands {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        char[][] map;
+        int m, n;
+        int ans = 0;
+
+        void dfs(int x, int y, boolean flag) {
+            if (x >= m || x < 0 || y >= n || y < 0 || map[x][y] != '1') return;
+            map[x][y] = '0';
+            if (flag) {
+                ans++;
+            }
+            dfs(x + 1, y, false);
+            dfs(x - 1, y, false);
+            dfs(x, y + 1, false);
+            dfs(x, y - 1, false);
+        }
+
         public int numIslands(char[][] grid) {
-            return 0;
+            if (grid == null) {
+                return 0;
+            }
+            map = grid;
+            m = grid.length;
+            n = grid[0].length;
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    dfs(i, j, true);
+                }
+            }
+            return ans;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
