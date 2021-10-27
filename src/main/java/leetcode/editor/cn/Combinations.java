@@ -37,25 +37,46 @@
 
 
 /*
-  * Id：77
-  * Name：组合
-  * Date：2021-10-27 15:46:31
-*/
+ * Id：77
+ * Name：组合
+ * Date：2021-10-27 15:46:31
+ */
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Combinations {
     public static void main(String[] args) {
         Solution solution = new Combinations().new Solution();
+        solution.combine(3, 1);
         System.out.println("Hello world");
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public List<List<Integer>> combine(int n, int k) {
 
-        return null;
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        int N, K;
+        List<List<Integer>> res = new ArrayList<>();
+
+        public List<List<Integer>> combine(int n, int k) {
+            this.N = n;
+            this.K = k;
+            recursion(new ArrayList<>(), 1);
+            return res;
+        }
+
+        private void recursion(List<Integer> list, int b) {
+//            if (list.size() + (N - b) + 1 < 0) return;
+            if (list.size() == K) {
+                res.add(new ArrayList<>(list));
+                return;
+            }
+            for (int i = b; i <= N; i++) {
+                list.add(i);
+                recursion(list, i + 1);
+                list.remove(list.size() - 1);
+            }
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 } 
