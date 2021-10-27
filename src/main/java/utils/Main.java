@@ -8,14 +8,12 @@ package utils;
  */
 public class Main {
     public static void main(String[] args) {
-        int n = gcd(377, 319);
-        System.out.println(n);
+
+        int n, v;
+        n = v = 100;
+        int[] c = new int[10];
+        int[][] f = new int[10][10];
 
     }
-    public static int gcd(int x, int y) {
-        return y > 0 ? gcd(y, x % y) : x;
-    }
-
-
 
 }
