@@ -9,10 +9,9 @@ package utils;
 public class Main {
     public static void main(String[] args) {
 
-        int n, v;
-        n = v = 100;
-        int[] c = new int[10];
-        int[][] f = new int[10][10];
+        char c = 'c';
+        StringBuilder s = new StringBuilder();
+        System.out.println((char) (c - 32));
 
     }
 
