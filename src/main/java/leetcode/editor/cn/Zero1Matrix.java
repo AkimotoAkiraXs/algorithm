@@ -50,7 +50,7 @@ import java.util.Arrays;
 public class Zero1Matrix {
     public static void main(String[] args) {
         Solution solution = new Zero1Matrix().new Solution();
-        int[][] nums = new int[][]{{0},{1}};
+        int[][] nums = new int[][]{{0}, {1}};
         solution.updateMatrix(nums);
     }
 
@@ -81,7 +81,7 @@ public class Zero1Matrix {
             }
 
             for (int i = m - 1; i >= 0; i--) {
-                for (int j = n - 1; j > 0; j--) {
+                for (int j = n - 1; j >= 0; j--) {
                     if (i + 1 < m) dis[i][j] = Math.min(dis[i][j], dis[i + 1][j] + 1);
                     if (j + 1 < n) dis[i][j] = Math.min(dis[i][j], dis[i][j + 1] + 1);
                 }

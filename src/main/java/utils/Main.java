@@ -9,10 +9,5 @@ package utils;
 public class Main {
     public static void main(String[] args) {
 
-        char c = 'c';
-        StringBuilder s = new StringBuilder();
-        System.out.println((char) (c - 32));
-
     }
-
 }
