@@ -41,23 +41,46 @@ package leetcode.editor.cn;
 /**
  * Id：&emsp;&emsp;162
  * <p>
- * Name：寻找峰值 
+ * Name：寻找峰值
  *
- * @since  2021-12-24 14:23:56 
- * @author Yuri 
-*/
+ * @author Yuri
+ * @since 2021-12-24 14:23:56
+ */
 public class FindPeakElement {
     public static void main(String[] args) {
         Solution solution = new FindPeakElement().new Solution();
+        int[] nums = new int[]{6, 5, 4, 3, 2, 3, 2};
+        int peakElement = solution.findPeakElement(nums);
+        System.out.println(peakElement);
         System.out.println();
     }
-    
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int findPeakElement(int[] nums) {
-        return 1;
+    class Solution {
+        public int findPeakElement(int[] nums) {
+            int n = nums.length;
+            if (n == 1) {
+                return 0;
+            }
+            int a = 0, b = n;
+            int mid = 0;
+            while (a <= b) {
+                mid = (a + b) >> 1;
+                if (mid == 0) {
+                    return nums[mid] > nums[mid + 1] ? mid : mid + 1;
+                } else if (mid == n - 1) {
+                    return nums[mid] > nums[mid - 1] ? mid : mid - 1;
+                } else if (nums[mid - 1] > nums[mid]) {
+                    b = mid - 1;
+                } else if (nums[mid + 1] > nums[mid]) {
+                    a = mid + 1;
+                } else {
+                    break;
+                }
+            }
+            return mid;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

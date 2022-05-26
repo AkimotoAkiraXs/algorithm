@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### LeetCode ###
+.md
+/src/main/java/leetcode/editor/cn/doc/

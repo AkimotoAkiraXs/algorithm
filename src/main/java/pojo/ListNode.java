@@ -1,31 +1,39 @@
 package pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
- * @Author Yuri
- * @Date 2021/10/27 14:00
- * @Version 1.0
- * @Description:
+ * @author Yuri
+ * @since 2021/10/27 14:00
  */
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ListNode {
     public int val;
     public ListNode next;
 
-    public ListNode() {
+    public ListNode(int[] nums) {
+        this(Arrays.stream(nums).boxed().collect(Collectors.toList()));
     }
 
-    public ListNode(int val) {
-        this.val = val;
-    }
-
-    public ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+    public ListNode(List<Integer> nums) throws IllegalArgumentException {
+        if (nums == null || nums.isEmpty()) {
+            throw new IllegalArgumentException("error argument!");
+        }
+        this.val = nums.remove(0);
+        this.next = nums.isEmpty() ? null : new ListNode(nums);
     }
 
     public static void main(String[] args) {
-        ListNode child = null;
-
-        System.out.println(child);
+        ListNode listNode = new ListNode(new int[]{1});
+        System.out.println(listNode);
     }
 }

@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author Yuri
- * @Date 2021/8/26 14:16
- * @Version 1.0
- * @Description: 二叉树对象类型
+ * @author Yuri
+ * @since 2021/8/26 14:16
  */
 @Data
 @NoArgsConstructor
