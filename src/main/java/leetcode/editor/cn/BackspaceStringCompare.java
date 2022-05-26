@@ -55,7 +55,7 @@ import java.util.Stack;
  * <p>
  * Name：比较含退格的字符串
  * <p>
- * Reflect：除了栈思想外还可以用双指针，从后往前比较每个字符串，不相符则跳出false
+ * Reflection：除了栈思想外还可以用双指针，从后往前比较每个字符串，不相符则跳出false
  * 遇到'#'则计数往后抵消字符直至'#’为0后继续比较
  *
  * @author Yuri
