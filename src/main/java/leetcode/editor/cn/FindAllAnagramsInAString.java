@@ -60,6 +60,36 @@ public class FindAllAnagramsInAString {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        /**
+         * <p>
+         * 优化滑动窗口
+         * </p>
+         * Reflection: 对p内字母数做记录，然后遍历s进行抵消。
+         * 如果s中有连续子串能匹配p（含有不同字符个数相同）那么一定会有连续p.length次cnt[s.charAt(hi)] > 0
+         * 此时hi就会连续加p.length次，最后满足hi-lo=p.length.
+         * 当遇到一个不曾含有的字符，这hi一直等待，知道lo+1=hi，此时该字符被记录，在下一次比较中被抵消.
+         */
+        public List<Integer> findAnagrams(String s, String p) {
+            int[] cnt = new int[128];
+            for (char c : p.toCharArray()) cnt[c]++;
+            int lo = 0, hi = 0;
+            List<Integer> res = new ArrayList<>();
+            while (hi < s.length()) {
+                if (cnt[s.charAt(hi)] > 0) {
+                    cnt[s.charAt(hi)]--;
+                    hi++;
+                    if (hi - lo == p.length()) res.add(lo);
+                } else {
+                    cnt[s.charAt(lo)]++;
+                    lo++;
+                }
+            }
+            return res;
+        }
+
+        // 普通滑动窗口 Map做标记比较
+/*
         public List<Integer> findAnagrams(String s, String p) {
             List<Integer> ans = new ArrayList<>();
             if (s.length() < p.length()) {
@@ -88,6 +118,7 @@ public class FindAllAnagramsInAString {
             }
             return ans;
         }
+*/
 
         private boolean compareMap(Map<Character, Integer> map1, Map<Character, Integer> map2) {
             for (Map.Entry<Character, Integer> entry : map1.entrySet()) {
