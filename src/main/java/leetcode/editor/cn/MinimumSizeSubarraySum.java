@@ -49,8 +49,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
 /**
  * Id：&emsp;&emsp;209
  * <p>
@@ -68,7 +66,6 @@ public class MinimumSizeSubarraySum {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int minSubArrayLen(int target, int[] nums) {
-            if (Arrays.stream(nums).sum() < target) return 0;
             int ans = Integer.MAX_VALUE;
             int k = 0, sum = 0;
             for (int i = 0; i < nums.length; i++) {
@@ -78,7 +75,7 @@ public class MinimumSizeSubarraySum {
                     sum -= nums[k++];
                 }
             }
-            return ans;
+            return ans == Integer.MAX_VALUE ? 0 : ans;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
