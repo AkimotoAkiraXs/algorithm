@@ -26,7 +26,7 @@ public class TreeNode {
         }
         TreeNode tree = new TreeNode();
         tree.val = nums[0];
-        List<TreeNode> trees  = new ArrayList<>();
+        List<TreeNode> trees = new ArrayList<>();
         trees.add(tree);
         for (int i = 0; i < nums.length; ) {
             TreeNode node = trees.remove(0);
@@ -43,9 +43,9 @@ public class TreeNode {
                 trees.add(node.right);
             }
         }
-            this.val = tree.val;
-            this.left = tree.left;
-            this.right = tree.right;
+        this.val = tree.val;
+        this.left = tree.left;
+        this.right = tree.right;
     }
 
     private TreeNode createTree(int index, Integer[] nums) {
@@ -56,7 +56,9 @@ public class TreeNode {
     }
 
     public static void main(String[] args) {
-        TreeNode treeNode = new TreeNode(new Integer[]{1,null,2,null,3,null,4,null,5,null,6});
-        System.out.println(treeNode.toString());
+        TreeNode a = new TreeNode(new Integer[]{3,4,5,1,2});
+        TreeNode b = new TreeNode(new Integer[]{4,1,2});
+        boolean equals = a.left.equals(b);
+        System.out.println("ans:" + equals);
     }
 }
