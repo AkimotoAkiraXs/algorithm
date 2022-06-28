@@ -4,8 +4,7 @@
  */
 public class Main {
     public static void main(String[] args) {
-
-
-
+        int i = (int)1e9 + 7;
+        System.out.println(i);
     }
 }
