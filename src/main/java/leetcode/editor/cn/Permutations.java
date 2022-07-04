@@ -61,9 +61,11 @@ public class Permutations {
         int[] n;
         List<List<Integer>> res = new ArrayList<>();
 
+        boolean[] vis;
         public List<List<Integer>> permute(int[] nums) {
             len = nums.length;
             n = nums;
+            vis = new boolean[nums.length];
             dfs(new ArrayList<>());
             return res;
         }
@@ -74,9 +76,11 @@ public class Permutations {
                 return;
             }
             for (int i = 0; i < len; i++) {
-                if (list.contains(n[i])) continue;
+                if (vis[i]) continue;
                 list.add(n[i]);
+                vis[i] = true;
                 dfs(list);
+                vis[i] = false;
                 list.remove(list.size() - 1);
             }
         }
