@@ -66,12 +66,12 @@ public class PermutationsIi {
             numbers = nums;
             len = nums.length;
             vis = new boolean[len];
-            dfs(new ArrayList<>());
+            traceBack(new ArrayList<>());
             return ans;
         }
 
         // i > 0 && numbers[i] == numbers[i-1] && !vis[i-1] 当前数和前面的数相同时，如果前面数未标记则说明是经过回溯，跳过避免重复
-        void dfs(List<Integer> list) {
+        void traceBack(List<Integer> list) {
             if (list.size() == len) {
                 ans.add(new ArrayList<>(list));
                 return;
@@ -80,7 +80,7 @@ public class PermutationsIi {
                 if (vis[i] || (i > 0 && numbers[i] == numbers[i-1] && !vis[i-1])) continue;
                 list.add(numbers[i]);
                 vis[i] = true;
-                dfs(list);
+                traceBack(list);
                 vis[i] = false;
                 list.remove(list.size() - 1);
             }

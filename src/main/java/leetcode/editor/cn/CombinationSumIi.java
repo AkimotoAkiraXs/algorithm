@@ -70,11 +70,11 @@ public class CombinationSumIi {
             Arrays.sort(candidates);
             numbers = candidates;
             vis = new boolean[numbers.length];
-            dfs(0, target, new ArrayList<>());
+            traceBack(0, target, new ArrayList<>());
             return ans;
         }
 
-        void dfs(int i, int target, List<Integer> nums) {
+        void traceBack(int i, int target, List<Integer> nums) {
             if (target == 0) {
                 ans.add(new ArrayList<>(nums));
                 return;
@@ -84,7 +84,7 @@ public class CombinationSumIi {
                 if (numbers[i] > target) break;
                 nums.add(numbers[i]);
                 vis[i] = true;
-                dfs(i + 1, target - numbers[i], nums);
+                traceBack(i + 1, target - numbers[i], nums);
                 nums.remove(nums.size() - 1);
                 vis[i] = false;
             }

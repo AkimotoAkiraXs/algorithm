@@ -71,11 +71,11 @@ public class CombinationSum {
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
             Arrays.sort(candidates);
             numbers = candidates;
-            dfs(0, target, new ArrayList<>());
+            traceBack(0, target, new ArrayList<>());
             return ans;
         }
 
-        void dfs(int i, int target, List<Integer> nums) {
+        void traceBack(int i, int target, List<Integer> nums) {
             if (target == 0) {
                 ans.add(new ArrayList<>(nums));
                 return;
@@ -85,7 +85,7 @@ public class CombinationSum {
                     break;
                 }
                 nums.add(numbers[i]);
-                dfs(i, target - numbers[i], nums);
+                traceBack(i, target - numbers[i], nums);
                 nums.remove(nums.size() - 1);
             }
         }
