@@ -62,7 +62,6 @@ public class RemoveDuplicatesFromSortedListIi {
      * }
      */
     class Solution {
-        // TODO: 2022/1/24
         public ListNode deleteDuplicates(ListNode head) {
             if (head == null) return null;
             ListNode dummy = new ListNode(0, head);
