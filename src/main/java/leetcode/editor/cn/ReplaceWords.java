@@ -45,9 +45,9 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashSet;
+import com.google.common.collect.Lists;
+
 import java.util.List;
-import java.util.Set;
 
 /**
  * Id：&emsp;&emsp;648
@@ -60,10 +60,12 @@ import java.util.Set;
 public class ReplaceWords {
     public static void main(String[] args) {
         Solution solution = new ReplaceWords().new Solution();
-        System.out.println();
+        String s = solution.replaceWords(Lists.newArrayList("sa", "fsd"), "sav da");
+        System.out.println(s);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+/*
     class Solution {
         public String replaceWords(List<String> dictionary, String sentence) {
             Set<String> hash = new HashSet<>(dictionary);
@@ -81,8 +83,82 @@ public class ReplaceWords {
             return String.join(" ", strings);
         }
     }
+*/
 
-    // todo 字典树解法
+/*
+    // 字典树 二维数组（可以把所用外部成员命名为Static，时间缩短十倍。OJ能过，但本地报错---内部类不能使用静态声明）
+    class Solution {
+        int N = 100000, M = 26;
+        int[][] tr = new int[N][M];
+        boolean[] isEnd = new boolean[N * M];
+        int idx;
+
+        void add(String s) {
+            int p = 0;
+            for (int i = 0; i < s.length(); i++) {
+                int u = s.charAt(i) - 'a';
+                if (tr[p][u] == 0) tr[p][u] = ++idx;
+                p = tr[p][u];
+            }
+            isEnd[p] = true;
+        }
+
+        String query(String s) {
+            for (int i = 0, p = 0; i < s.length(); i++) {
+                int u = s.charAt(i) - 'a';
+                if (tr[p][u] == 0) break;
+                if (isEnd[tr[p][u]]) return s.substring(0, i + 1);
+                p = tr[p][u];
+            }
+            return s;
+        }
+
+        public String replaceWords(List<String> ds, String s) {
+            for (String d : ds) add(d);
+            StringBuilder sb = new StringBuilder();
+            for (String str : s.split(" ")) sb.append(query(str)).append(" ");
+            return sb.substring(0, sb.length() - 1);
+        }
+    }
+*/
+
+    // 字典树 动态线段树
+    class Solution {
+        class Node {
+            boolean isEnd;
+            Node[] nodes = new Node[26];
+        }
+
+        Node root = new Node();
+
+        void add(String str) {
+            Node p = root;
+            for (int i = 0; i < str.length(); i++) {
+                int u = str.charAt(i) - 'a';
+                if (p.nodes[u] == null) p.nodes[u] = new Node();
+                p = p.nodes[u];
+            }
+            p.isEnd = true;
+        }
+
+        String query(String str) {
+            Node p = root;
+            for (int i = 0; i < str.length(); i++) {
+                int u = str.charAt(i) - 'a';
+                if (p.nodes[u] == null) break; // 字典树中未记录，则表示未匹配上，退出匹配，返回原字符串
+                if (p.nodes[u].isEnd) return str.substring(0, i + 1); // 返回0~i的字符串（不包含i+1）
+                p = p.nodes[u];
+            }
+            return str;
+        }
+
+        public String replaceWords(List<String> ds, String s) {
+            for (String d : ds) add(d);
+            StringBuilder sb = new StringBuilder();
+            for (String str : s.split(" ")) sb.append(query(str)).append(" ");
+            return sb.substring(0, sb.length() - 1);
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
