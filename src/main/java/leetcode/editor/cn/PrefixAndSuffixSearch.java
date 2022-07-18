@@ -39,9 +39,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Id：&emsp;&emsp;745
  * <p>
@@ -52,30 +49,85 @@ import java.util.Map;
  */
 public class PrefixAndSuffixSearch {
     public static void main(String[] args) {
-        WordFilter solution = new PrefixAndSuffixSearch().new WordFilter();
-        System.out.println();
+        String[] words = new String[]{"ap", "apa"};
+        WordFilter solution = new PrefixAndSuffixSearch().new WordFilter(words);
+        int f = solution.f("ap", "ap");
+        System.out.println("ans:" + f);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+
+    /*
+        class WordFilter {
+            Map<String, Integer> map = new HashMap<>();
+
+            public WordFilter() {
+            }
+
+            public WordFilter(String[] words) {
+                for (int i = 0; i < words.length; i++) {
+                    for (int j = 1; j <= words[i].length(); j++) {
+                        for (int k = 1; k <= words[i].length(); k++) {
+                            map.put(words[i].substring(0, j) + " " + words[i].substring(words[i].length() - k), i);
+                        }
+                    }
+                }
+            }
+
+            public int f(String pref, String suff) {
+
+                return map.getOrDefault(pref + " " + suff, -1);
+            }
+        }
+    */
+    class Node {
+        boolean isEnd;
+        Node[] nodes = new Node[26];
+
+        void add(String str, boolean reverse) {
+            Node p = this;
+            for (int i = 0; i < str.length(); i++) {
+                int dir = reverse ? str.length() - i - 1 : i;
+                int u = str.charAt(dir) - 'a';
+                if (p.nodes[u] == null) p.nodes[u] = new Node();
+                p = p.nodes[u];
+            }
+            p.isEnd = true;
+        }
+
+        boolean query(String str, Boolean reverse) {
+            Node p = this;
+            for (int i = 0; i < str.length(); i++) {
+                int dir = reverse ? str.length() - i - 1 : i;
+                int u = str.charAt(dir) - 'a';
+                if (p.nodes[u] == null) return false;
+                if (p.nodes[u].isEnd) return true;
+                p = p.nodes[u];
+            }
+            return false;
+        }
+    }
+
     class WordFilter {
-        Map<String, Integer> map = new HashMap<>();
+        String[] words;
 
         public WordFilter() {
         }
 
         public WordFilter(String[] words) {
-            for (int i = 0; i < words.length; i++) {
-                for (int j = 1; j <= words[i].length(); j++) {
-                    for (int k = 1; k <= words[i].length(); k++) {
-                        map.put(words[i].substring(0, j) + " " + words[i].substring(words[i].length() - k), i);
-                    }
-                }
-            }
+            this.words = words;
         }
 
+        // todo 优化解法
         public int f(String pref, String suff) {
-
-            return map.getOrDefault(pref + " " + suff, -1);
+            Node preNode = new Node();
+            Node suffNode = new Node();
+            preNode.add(pref, false);
+            suffNode.add(suff, true);
+            for (int i = words.length - 1; i >= 0; i--) {
+                if (preNode.query(words[i], false) && suffNode.query(words[i], true)) return i;
+            }
+            return -1;
         }
     }
 
