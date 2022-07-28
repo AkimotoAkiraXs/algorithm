@@ -54,6 +54,7 @@ package leetcode.editor.cn;
 public class FractionAdditionAndSubtraction {
     public static void main(String[] args) {
         Solution solution = new FractionAdditionAndSubtraction().new Solution();
+
         System.out.println();
     }
 
