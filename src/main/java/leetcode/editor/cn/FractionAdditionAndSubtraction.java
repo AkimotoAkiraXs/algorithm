@@ -59,27 +59,63 @@ public class FractionAdditionAndSubtraction {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        int i = 0;
+        String s;
+        int sign;
+        int a, b;
+        int numerator = 0, denominator = 1;
+
         public String fractionAddition(String expression) {
-            StringBuilder sb = new StringBuilder(expression);
-            int firstFlag = 1;
-            if (sb.charAt(0) == '-') {
-                firstFlag = -1;
-                sb.deleteCharAt(0);
-                
+            if (expression.charAt(0) != '-') s = '+' + expression;
+            else s = expression;
+            boolean numeratorFlag = true;
+            for (; i < s.length(); i++) {
+                char c = s.charAt(i);
+                if (c == '+' || c == '-') {
+                    if (c == '+') sign = 1;
+                    else sign = -1;
+                    numeratorFlag = true;
+                } else if (c == '/') {
+                    numeratorFlag = false;
+                } else if (numeratorFlag) {
+                    a = sign * getNum();
+                } else {
+                    b = getNum();
+                    calculate(a, b);
+                }
             }
-            int lcm = 1;
-            for (int i = 2; i < sb.length(); i += 3) {
-                lcm = lcm(lcm, sb.charAt(i) - '0');
-            }
-            for (int i = 0; i < sb.length(); i += 3) {
 
+            int[] prime = new int[]{2, 3, 5, 7, 11};
+            for (int pri : prime) {
+                while ((numerator % pri) == 0 && (denominator % pri) == 0) {
+                    numerator /= pri;
+                    denominator /= pri;
+                }
             }
-
-            return null;
+            return String.valueOf(numerator) + '/' + denominator;
         }
 
+        private void calculate(int a, int b) {
+            int lcm = lcm(denominator, b);
+            numerator = (lcm / b * a + lcm / denominator * numerator);
+            denominator = lcm;
+        }
+
+        private int getNum() {
+            int k = s.charAt(this.i) - '0';
+            if (this.i + 1 < s.length() && s.charAt(i + 1) == '0') {
+                k = 10;
+                i++;
+            }
+            return k;
+        }
 
         private int lcm(int a, int b) {
+            if (b > a) {
+                int temp = a;
+                a = b;
+                b = temp;
+            }
             if (a * b == 0) return 0;
             return (a * b) / gcd(a, b);
         }
@@ -90,5 +126,4 @@ public class FractionAdditionAndSubtraction {
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
 }
