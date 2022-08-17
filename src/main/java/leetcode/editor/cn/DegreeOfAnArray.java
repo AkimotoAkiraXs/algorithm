@@ -40,8 +40,9 @@
 
 package leetcode.editor.cn;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Id：&emsp;&emsp;697
@@ -79,6 +80,8 @@ public class DegreeOfAnArray {
                 }
                 map.put(num, map.getOrDefault(num, 0L) + 1);
             }
+
+/*            // 获取出现次数最多的元素这一步可以用循环，可以节省时间为O(n)
             List<Map.Entry<Integer, Long>> entries = map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toList());
             Map.Entry<Integer, Long> firstEntry = entries.get(0);
             int maxValue = Math.toIntExact(firstEntry.getValue());
@@ -88,6 +91,17 @@ public class DegreeOfAnArray {
                 if (entry.getValue() == maxValue) {
                     ans = Math.min(dis[entry.getKey()], ans);
                 } else break;
+            }
+            */
+            int max = Integer.MIN_VALUE;
+            int ans = Integer.MAX_VALUE;
+            for (Map.Entry<Integer, Long> entry : map.entrySet()) {
+                if (max < entry.getValue()) {
+                    max = Math.toIntExact(entry.getValue());
+                    ans = dis[entry.getKey()];
+                } else if (max == entry.getValue()) {
+                    ans = Math.min(ans, dis[entry.getKey()]);
+                }
             }
             return ans;
         }
