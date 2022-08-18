@@ -38,10 +38,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-
 /**
  * Id：&emsp;&emsp;41
  * <p>
@@ -53,13 +49,14 @@ import java.util.TreeMap;
 public class FirstMissingPositive {
     public static void main(String[] args) {
         Solution solution = new FirstMissingPositive().new Solution();
-        solution.firstMissingPositive(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 20});
-        System.out.println();
+        int i = solution.firstMissingPositive(new int[]{3, 4, -1, 1});
+        System.out.println(i);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
+/*
         // TreeMap偷鸡
         public int firstMissingPositive(int[] nums) {
             Map<Integer, Integer> map = new TreeMap<>();
@@ -73,6 +70,45 @@ public class FirstMissingPositive {
             return k;
         }
     }
+*/
+
+        // 交换位置
+        public int firstMissingPositive(int[] nums) {
+            int n = nums.length;
+            for (int i = 0; i < n; i++) {
+                while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
+                    int temp = nums[nums[i] - 1];
+                    nums[nums[i] - 1] = nums[i];
+                    nums[i] = temp;
+                }
+            }
+            for (int i = 0; i < n; i++) {
+                if (nums[i] != i + 1) return i + 1;
+            }
+            return n + 1;
+        }
+    }
+
+/*
+        // 负号标记
+        public int firstMissingPositive(int[] nums) {
+            int n = nums.length;
+            for (int i = 0; i < n; i++) {
+                if (nums[i] <= 0) nums[i] = n + 1;
+            }
+            for (int i = 0; i < n; i++) {
+                int k = Math.abs(nums[i]);
+                if (k <= n && nums[k - 1] > 0) nums[k - 1] = -nums[k - 1];
+            }
+            for (int i = 0; i < n; i++) {
+                if (nums[i] > 0) return i + 1;
+            }
+            return n + 1;
+        }
+    }
+*/
+
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
