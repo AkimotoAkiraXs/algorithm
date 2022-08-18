@@ -81,6 +81,8 @@ public class FindAllDuplicatesInAnArray {
         }
 */
 
+/*
+
         // 交换数组元素
         public List<Integer> findDuplicates(int[] nums) {
             List<Integer> list = new ArrayList<>();
@@ -98,6 +100,18 @@ public class FindAllDuplicatesInAnArray {
             int temp = nums[a];
             nums[a] = nums[b];
             nums[b] = temp;
+        }
+*/
+
+        // 正负号
+        public List<Integer> findDuplicates(int[] nums) {
+            List<Integer> list = new ArrayList<>();
+            for (int num : nums) {
+                int index = Math.abs(num) - 1;
+                if (nums[index] < 0) list.add(index + 1);
+                else nums[index] = -nums[index];
+            }
+            return list;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
