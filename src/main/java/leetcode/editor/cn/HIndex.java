@@ -37,8 +37,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
 /**
  * Id：&emsp;&emsp;274
  * <p>
@@ -55,17 +53,40 @@ public class HIndex {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int hIndex(int[] citations) {
-            Arrays.sort(citations);
-            int n = citations.length;
-            for (int i = n - 1; i >= 0; i--) {
-                int k = n - i - 1;
-                if (k >= 0 && citations[k] >= i + 1) {
-                    return i + 1;
+
+        /*
+                // 排序-逻辑推理（从后向前，当满足条件index-h时即为答案）
+                public int hIndex(int[] citations) {
+                    Arrays.sort(citations);
+                    int n = citations.length;
+                    for (int i = n - 1; i >= 0; i--) {
+                        int k = n - i - 1;
+                        if (k >= 0 && citations[k] >= i + 1) {
+                            return i + 1;
+                        }
+                    }
+                    return 0;
                 }
+        */
+
+        // 计数排序，缩短时间为O(n)
+        public int hIndex(int[] citations) {
+            int n = citations.length;
+            int[] counter = new int[n + 1];
+            for (int num : citations) {
+                if (num >= n) counter[n]++;
+                else counter[num]++;
+            }
+
+            int tot = 0;
+            for (int i = n ; i > 0; i--) {
+                tot += counter[i];
+                // 有tot篇文章应用次数为i，此时tot>=i，满足条件，i则是最大的h
+                if (tot >= i) return i;
             }
             return 0;
         }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
