@@ -30,28 +30,30 @@
 
 
 /*
-  * Id：344
-  * Name：反转字符串
-  * Date：2021-09-28 09:28:41
-*/
+ * Id：344
+ * Name：反转字符串
+ * Date：2021-09-28 09:28:41
+ */
 package leetcode.editor.cn;
+
 public class ReverseString {
     public static void main(String[] args) {
         Solution solution = new ReverseString().new Solution();
         System.out.println("Hello world");
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public void reverseString(char[] s) {
-        int a = 0, b = s.length-1;
-        while (a < b) {
-            char temp = s[a];
-            s[a] = s[b];
-            s[b] = temp;
-            a++;
-            b--;
+    class Solution {
+        public void reverseString(char[] s) {
+            int a = 0, b = s.length - 1;
+            while (a < b) {
+                char temp = s[a];
+                s[a] = s[b];
+                s[b] = temp;
+                a++;
+                b--;
+            }
         }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 } 
