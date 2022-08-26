@@ -48,10 +48,8 @@ public class ReverseString {
             int a = 0, b = s.length - 1;
             while (a < b) {
                 char temp = s[a];
-                s[a] = s[b];
-                s[b] = temp;
-                a++;
-                b--;
+                s[a++] = s[b];
+                s[b--] = temp;
             }
         }
     }
