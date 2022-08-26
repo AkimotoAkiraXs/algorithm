@@ -39,8 +39,6 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
 /**
  * Id：&emsp;&emsp;238
  * <p>
@@ -57,25 +55,21 @@ public class ProductOfArrayExceptSelf {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // 题目要求不能用除法！！！
+        // 正解：前缀和计算任意位置左右两边乘积
         public int[] productExceptSelf(int[] nums) {
-            int k = -1;
-            int mul = 1;
             int n = nums.length;
             int[] ans = new int[n];
-            for (int i = 0; i < n; i++) {
-                if (nums[i] == 0) {
-                    if (k != -1) return ans;
-                    else k = i;
-                } else mul *= nums[i];
-            }
-            if (k != -1) {
-                Arrays.fill(ans, 0);
-                ans[k] = mul;
-            } else {
-                for (int i = 0; i < n; i++) {
-                    ans[i] = mul / nums[i];
-                }
-            }
+            int[] lSum = new int[n + 2];
+            int[] rSum = new int[n + 2];
+            lSum[0] = rSum[n - 1] = 1;
+            // sum of left
+            for (int i = 1; i <= n; i++) lSum[i] = lSum[i - 1] * nums[i - 1];
+            // sum of right
+            for (int i = n - 2; i >= 0; i--) rSum[i] = rSum[i + 1] * nums[i + 1];
+
+            for (int i = 0; i < n; i++) ans[i] = lSum[i] * rSum[i];
+
             return ans;
         }
     }
