@@ -53,17 +53,18 @@ public class FindTheDifference {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        /**
-         * 位运算：将两个字符串合成一个，则一定存在某个字符有奇数个（其余全为偶数个），
-         * 所以使用异或运算即可以得到该字符
-         */
+
+         // 位运算：将两个字符串合成一个，则一定存在某个字符有奇数个（其余全为偶数个），所以使用异或运算即可以得到该字符
         public char findTheDifference(String s, String t) {
+/*
             int ret = t.charAt(0);
             for (int i = 0; i < s.length(); ++i) {
                 ret ^= s.charAt(i);
                 ret ^= t.charAt(i + 1);
             }
             return (char) ret;
+*/
+            return (char)(s + t).chars().reduce(0, (a, b) -> a ^ b);
         }
 
 /*
