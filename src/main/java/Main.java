@@ -1,6 +1,6 @@
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Yuri
@@ -8,13 +8,30 @@ import java.util.stream.Collectors;
  */
 public class Main {
     public static void main(String[] args) {
+        String[] strs = new String[]{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        Map<Integer, String> map = new HashMap<>();
+        int N = 26;
 
-        String s = "a good   example";
-        String[] s1 = s.split(" ");
-        String ss = Arrays.stream(s1).filter(str -> !Objects.equals(str, "") && Objects.nonNull(str))
-                .collect(Collectors.joining(" "));
-        String sss = new StringBuffer(ss).reverse().toString();
+        int[][] cnts = new int[N][2];
 
-        System.out.println(sss);
+        for (int i = 0; i < N; i++) cnts[i][0] = i + 'a';
+        for (String str : strs) {
+            boolean[] b = new boolean[N];
+            for (char c : str.toCharArray()) {
+                int k = c - 'a';
+                if (!b[k]) {
+                    b[k] = true;
+                    cnts[k][1]++;
+                }
+            }
+        }
+        Arrays.sort(cnts, (a, b) -> {
+            if (a[1] == 0 && b[1] != 0) return 1;
+            if (a[1] != 0 && b[1] == 0) return -1;
+            if (a[1] == b[1]) return a[0] - b[0];
+            return a[1] - b[1];
+        });
+
+        System.out.println(Arrays.deepToString(cnts));
     }
 }
