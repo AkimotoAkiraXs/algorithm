@@ -49,6 +49,7 @@ public class CountBinarySubstrings {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //
         public int countBinarySubstrings(String s) {
             char k = 0;
             int x = 0, y = 0;
