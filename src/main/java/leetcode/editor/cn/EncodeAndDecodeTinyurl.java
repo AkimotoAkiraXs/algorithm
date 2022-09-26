@@ -84,7 +84,7 @@ public class EncodeAndDecodeTinyurl {
         }
 
         public String getRandomNum() {
-            return (int) ((Math.random() * 9 + 1) * 100000) + "";
+            return (int) (Math.random() * 100000) + "";
         }
     }
 
