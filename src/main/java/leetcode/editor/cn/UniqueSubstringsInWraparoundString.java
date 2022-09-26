@@ -63,6 +63,11 @@ public class UniqueSubstringsInWraparoundString {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 以max[i]记录以字符i-'a'结尾串的最大值
+         * max[i]代表字符i-'a'对所求答案的贡献值
+         * 理解了上述，就可以得到题目所求答案即是max的和
+         */
         public int findSubstringInWraproundString(String p) {
             int[] max = new int[26];
             int k = 1;
