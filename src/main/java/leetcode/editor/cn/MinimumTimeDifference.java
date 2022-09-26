@@ -53,6 +53,10 @@ public class MinimumTimeDifference {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * 注意使用：鸽巢原理，因为时间可能数只有24*60，所以当size大于该数量则可以判定肯定会有重复的数，直接返回0即可
+     */
     class Solution {
         public int findMinDifference(List<String> timePoints) {
             int size = timePoints.size();
