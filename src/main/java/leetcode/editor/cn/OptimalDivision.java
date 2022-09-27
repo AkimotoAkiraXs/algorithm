@@ -51,8 +51,7 @@ public class OptimalDivision {
     class Solution {
         /**
          * 贪心、脑筋急转弯 <br/>
-         * 求整体最大只需要保证第一个数能除以最小的数，换而言之就是保证第二个数最小 <br/>
-         * ∵所有数都是正整数，∴第二个数只需要分别除以后续数则可以得到最小值，则所求答案格式都是固定的，需要注意size=1和size=2的情况 <br/>
+         * 求最大值：∵所有数都是正整数，第二个数肯定要除，保证其他数全乘则能得到最大值 <br/>
          */
 
         public String optimalDivision(int[] nums) {
