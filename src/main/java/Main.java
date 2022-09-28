@@ -7,8 +7,9 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 
-        String equation = "x+5-3+x=6+x-2";
-        String substring = equation.substring(0, equation.length() - 1);
+        String equation = "x+5-3x-x=x+2x-2";
+        String substring = equation.replaceAll("(\\D)x|^x", "$11x");
+
         System.out.println(substring);
 
 

@@ -65,6 +65,7 @@ public class SolveTheEquation {
 
         public String solveEquation(String equation) {
             equation = equation.replace("-", "+-");
+//            equation = equation.replaceAll("(\\D)x|^x", "$11x"); // 可以利用正则替换x,-x为1x,-1x，但是会慢很多
             int e = equation.indexOf("=");
             String[] left = equation.substring(0, e).split("\\+");
             String[] right = equation.substring(e + 1).split("\\+");
@@ -76,6 +77,7 @@ public class SolveTheEquation {
         void calculate(String[] strings, int operative) {
             for (String str : strings) {
                 if (Objects.equals(str, "")) continue;
+                // 做if判断会比正则快很多
                 if (str.equals("x")) {
                     x += operative;
                     continue;
