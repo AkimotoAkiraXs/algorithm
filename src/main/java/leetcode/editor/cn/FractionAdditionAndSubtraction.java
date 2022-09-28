@@ -59,6 +59,12 @@ public class FractionAdditionAndSubtraction {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * 1.将所有等式变为统一格式 <br/>
+     * 2.设计一个等式计算±a/b + ±x/y <br/>
+     * 3.对最后得到的等式约分
+     */
     class Solution {
         int i = 0;
         String s;
@@ -67,7 +73,7 @@ public class FractionAdditionAndSubtraction {
         int numerator = 0, denominator = 1;
 
         public String fractionAddition(String expression) {
-            if (expression.charAt(0) != '-') s = '+' + expression;
+            if (expression.charAt(0) != '-') s = '+' + expression; // 将所有数格式都变为：±a/b
             else s = expression;
             boolean numeratorFlag = true;
             for (; i < s.length(); i++) {
@@ -86,22 +92,24 @@ public class FractionAdditionAndSubtraction {
                 }
             }
 
-            int[] prime = new int[]{2, 3, 5, 7, 11};
+            int[] prime = new int[]{2, 3, 5, 7};
             for (int pri : prime) {
                 while ((numerator % pri) == 0 && (denominator % pri) == 0) {
                     numerator /= pri;
                     denominator /= pri;
                 }
             }
-            return String.valueOf(numerator) + '/' + denominator;
+            return numerator + "/" + denominator;
         }
 
+        // 模拟分式计算
         private void calculate(int a, int b) {
             int lcm = lcm(denominator, b);
-            numerator = (lcm / b * a + lcm / denominator * numerator);
+            numerator = (lcm / b) * a + (lcm / denominator) * numerator;
             denominator = lcm;
         }
 
+        // 处理分子或分母为10的情况
         private int getNum() {
             int k = s.charAt(this.i) - '0';
             if (this.i + 1 < s.length() && s.charAt(i + 1) == '0') {

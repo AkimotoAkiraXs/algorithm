@@ -7,7 +7,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        double random = Math.random();
-        System.out.println(random);
+        int i = Integer.parseInt("+1");
+        System.out.println("i:"+ i);
     }
 }
