@@ -1,4 +1,4 @@
-
+import java.util.Arrays;
 
 /**
  * @author Yuri
@@ -7,7 +7,16 @@
 public class Main {
     public static void main(String[] args) {
 
-        int i = Integer.parseInt("+1");
-        System.out.println("i:"+ i);
+        String equation = "x+5-3+x=6+x-2";
+        String substring = equation.substring(0, equation.length() - 1);
+        System.out.println(substring);
+
+
+        equation = equation.replace("-", "+-");
+        int e = equation.indexOf("=");
+        String left = equation.substring(0, e);
+        String right = equation.substring(e + 1);
+        String[] strings = right.split("[+=]");
+        System.out.println(Arrays.toString(strings));
     }
 }
