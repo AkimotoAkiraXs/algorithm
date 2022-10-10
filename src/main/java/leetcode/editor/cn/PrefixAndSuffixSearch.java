@@ -119,11 +119,11 @@ public class PrefixAndSuffixSearch {
         }
 
         // todo 优化解法
-        public int f(String pref, String suff) {
+        public int f(String pref, String suf) {
             Node preNode = new Node();
             Node sufNode = new Node();
             preNode.add(pref, false);
-            sufNode.add(suff, true);
+            sufNode.add(suf, true);
             for (int i = words.length - 1; i >= 0; i--) {
                 if (preNode.query(words[i], false) && sufNode.query(words[i], true)) return i;
             }
