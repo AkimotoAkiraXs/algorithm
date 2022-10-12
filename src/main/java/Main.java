@@ -7,7 +7,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        String s = "  00 -12345678910";
+        System.out.println(Math.log10(1000));
 
 
 
