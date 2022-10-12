@@ -121,7 +121,7 @@ public class StringToIntegerAtoi {
         public int sign = 1;
         public long num = 0;
         private String state = "start";
-        private Map<String, String[]> table = new HashMap<String, String[]>() {{
+        private final Map<String, String[]> table = new HashMap<String, String[]>() {{
             put("start", new String[]{"start", "signed", "number", "end"});
             put("signed", new String[]{"end", "end", "number", "end"});
             put("number", new String[]{"end", "end", "number", "end"});
