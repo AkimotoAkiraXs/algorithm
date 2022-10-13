@@ -58,6 +58,9 @@ public class MaxChunksToMakeSorted {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+/*
+        // 双指针
         public int maxChunksToSorted(int[] arr) {
             int fast = 0, slow = 0;
             int ans = 0;
@@ -75,6 +78,22 @@ public class MaxChunksToMakeSorted {
                 }
             }
             return ans;
+        }
+*/
+
+        /**
+         * 前缀和：因为题目限制了数组为0 ~ n-1所以不可能发生 0+3 = 1+2这种Bug
+         */
+        public int maxChunksToSorted(int[] arr) {
+            int ret = 0;
+            int vSum = 0;
+            int iSum = 0;
+            for (int i = 0; i < arr.length; i++) {
+                vSum += arr[i];
+                iSum += i;
+                if (vSum == iSum) ret++;
+            }
+            return ret;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
