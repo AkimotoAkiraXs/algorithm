@@ -81,9 +81,8 @@ public class MaxChunksToMakeSorted {
         }
 */
 
-        /**
-         * 前缀和：因为题目限制了数组为0 ~ n-1所以不可能发生 0+3 = 1+2这种Bug
-         */
+/*
+        // 前缀和：因为题目限制了数组为0 ~ n-1所以不可能发生 0+3 = 1+2这种Bug
         public int maxChunksToSorted(int[] arr) {
             int ret = 0;
             int vSum = 0;
@@ -94,6 +93,17 @@ public class MaxChunksToMakeSorted {
                 if (vSum == iSum) ret++;
             }
             return ret;
+        }
+*/
+
+        // 贪心 要满足分割，则需满足0到i是一个0到i的排列，
+        public int maxChunksToSorted(int[] arr) {
+            int ans = arr[0] == 0 ? 1 : 0;
+            for (int i = 1; i < arr.length; i++) {
+                arr[i] = Math.max(arr[i], arr[i - 1]);
+                if (arr[i] == i) ans++;
+            }
+            return ans;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
