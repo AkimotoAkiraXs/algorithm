@@ -9,7 +9,7 @@ public class Main {
 
         int i = Integer.parseInt("0001");
 
-        System.out.println(i);
+        System.out.println(101 >> 1);
 
     }
 }
