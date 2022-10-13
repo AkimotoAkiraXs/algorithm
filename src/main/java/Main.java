@@ -7,11 +7,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(Math.log10(1000));
+        int i = Integer.parseInt("0001");
 
-
-
-
+        System.out.println(i);
 
     }
 }
