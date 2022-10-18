@@ -47,6 +47,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.Objects;
+
 /**
  * Id：&emsp;&emsp;521
  * <p>
@@ -65,17 +67,7 @@ public class LongestUncommonSubsequenceI {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int findLUSlength(String a, String b) {
-            if (a.length() != b.length()) return Math.max(a.length(), b.length());
-            int s = -1, e = -1;
-            for (int i = 0; i < a.length(); i++) {
-                if (a.charAt(i) != b.charAt(i)) {
-                    if (s == -1) {
-                        s = i;
-                        e = i;
-                    } else e = i;
-                }
-            }
-            return e == -1 ? -1 : e - s + 1;
+            return Objects.equals(a, b) ? -1 : Math.max(a.length(), b.length());
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
