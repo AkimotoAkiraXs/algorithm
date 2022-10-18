@@ -1,4 +1,7 @@
+import com.google.common.collect.Lists;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Yuri
@@ -7,9 +10,14 @@
 public class Main {
     public static void main(String[] args) {
 
-        int i = Integer.parseInt("0001");
+        List<String> dictionary = Lists.newArrayList(
+                "ale", "apple", "monkey", "plea"
+        );
+        dictionary = dictionary.stream().sorted((a, b) -> {
+            if (a.length() == b.length()) return a.compareTo(b);
+            return b.length() - a.length();
+        }).collect(Collectors.toList());
 
-        System.out.println(101 >> 1);
-
+        System.out.println(dictionary);
     }
 }
