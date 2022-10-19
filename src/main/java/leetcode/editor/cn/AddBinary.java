@@ -46,17 +46,17 @@ public class AddBinary {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String addBinary(String a, String b) {
-            int x = a.length() - 1;
-            int y = b.length() - 1;
+            int i = a.length() - 1;
+            int j = b.length() - 1;
             StringBuilder sb = new StringBuilder();
             int mod = 0;
-            while (x >= 0 || y >= 0) {
-                int i = x >= 0 ? a.charAt(x) - '0' : 0;
-                int j = y >= 0 ? b.charAt(y) - '0' : 0;
-                sb.append((i + j + mod) % 2);
-                mod = (i + j + mod) / 2;
-                x--;
-                y--;
+            while (i >= 0 || j >= 0) {
+                int x = i >= 0 ? a.charAt(i) - '0' : 0;
+                int y = j >= 0 ? b.charAt(j) - '0' : 0;
+                sb.append((x + y + mod) % 2);
+                mod = (x + y + mod) / 2;
+                i--;
+                j--;
             }
             if (mod == 1) sb.append(1);
             return sb.reverse().toString();
