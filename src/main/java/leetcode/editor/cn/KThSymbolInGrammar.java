@@ -64,13 +64,8 @@ public class KThSymbolInGrammar {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-
-       public int kthGrammar(int n, int k) {
-            return Integer.bitCount(k - 1) & 1;
-       }
-
 /*
-        // 手动模拟折叠
+        // 模拟翻转 翻转次数为偶数则是0 为奇数则是1
         public int kthGrammar(int n, int k) {
             int fold = 0;
             while (k > 1) {
@@ -86,6 +81,15 @@ public class KThSymbolInGrammar {
             return fold % 2;
         }
 */
+
+        /**
+         * 把数字k转为二进制表示，对于上述模拟翻转，每次翻转相当于把二进制表示k前i个为1的数变为0的过程
+         * ∴ bitCount(k) = fold
+         */
+
+        public int kthGrammar(int n, int k) {
+            return Integer.bitCount(k - 1) & 1;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
