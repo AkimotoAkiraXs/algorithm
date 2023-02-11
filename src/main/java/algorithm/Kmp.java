@@ -28,16 +28,10 @@ public class Kmp {
         int[] next = getNext(match);
         int k = -1;
         for (int i = 0; i < str.length(); i++) {
-            while (k > -1 && match.charAt(k + 1) != str.charAt(i)) {
-                k = next[k]; //不匹配则回溯，不同于暴力，因为有next数组，所以不用回溯到match最开始
-            }
-            if (match.charAt(k + 1) == str.charAt(i)) {
-                k++;
-            }
-            if (k == match.length() - 1)//说明k移动到ptr的最末端
-            {
-                return i - match.length() + 1;//返回相应的位置
-            }
+            // 不匹配则回溯，不同于暴力，因为有next数组，所以不用回溯到match最开始
+            while (k > -1 && match.charAt(k + 1) != str.charAt(i)) k = next[k];
+            if (match.charAt(k + 1) == str.charAt(i)) k++;
+            if (k == match.length() - 1) return i - match.length() + 1;// 返回相应的位置
         }
         return -1;
     }
@@ -58,19 +52,15 @@ public class Kmp {
      * 依旧能保证该位置往前的k个位置与从头起k个位置一定是相同的
      * (∵aba中，k=0，有一个字符相同∴s[0]=s[2]，有∵ababa中s[0~2]=s[2~4]，则有s[2]=s[4]∴s[0]=s[4]也一定成立）
      */
-    private int[] getNext(String ps) {
-        char[] s = ps.toCharArray();
+    private int[] getNext(String match) {
+        char[] s = match.toCharArray();
         int[] next = new int[s.length];
         next[0] = -1;
         int k = -1;
         for (int i = 1; i < s.length; i++) {
-            while (k > -1 && s[k + 1] != s[i]) {
-                k = next[k];//往前回溯，表示缩小k，此时位置i前k个字符与字符串开始k个字符也一定相同
-            }
-            if (s[k + 1] == s[i]) {
-                k++;
-            }
-            next[i] = k;//这个是把算的k的值（就是相同的最大前缀和最大后缀长）赋给next[q]
+            while (k > -1 && s[k + 1] != s[i]) k = next[k];// 往前回溯，表示缩小k，此时位置i前k个字符与字符串开始k个字符也一定相同
+            if (s[k + 1] == s[i]) k++;
+            next[i] = k;// 这个是把算的k的值（就是相同的最大前缀和最大后缀长）赋给next[q]
         }
         return next;
     }
