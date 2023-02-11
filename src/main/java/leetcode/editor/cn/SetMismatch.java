@@ -54,10 +54,10 @@ public class SetMismatch {
         public int[] findErrorNums(int[] nums) {
             boolean[] b = new boolean[nums.length + 1];
             int[] ans = new int[2];
-            for (int i = 0; i < nums.length; i++) {
-                if (b[nums[i]]) {
-                    ans[0] = nums[i];
-                } else b[nums[i]] = true;
+            for (int num : nums) {
+                if (b[num]) {
+                    ans[0] = num;
+                } else b[num] = true;
             }
             for (int i = 1; i <= nums.length; i++) {
                 if (!b[i]) {
