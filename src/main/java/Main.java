@@ -1,4 +1,4 @@
-
+import java.util.*;
 
 /**
  * @author Yuri
@@ -6,9 +6,21 @@
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println("请输入数字选择排序算法：\n");
 
-        String num = "123";
 
-        System.out.println(num.substring(1, 3));
+    }
+
+    public static boolean[] er() {
+        final int MAX = 60000 + 10;
+        boolean[] vis = new boolean[MAX];
+        vis[0] = vis[1] = true;
+        for (int i = 2; i <= 60000; i++) {
+            if (vis[i]) continue;
+            for (int j = i; i * j < MAX; j++) {
+                vis[i * j] = true;
+            }
+        }
+        return vis;
     }
 }
