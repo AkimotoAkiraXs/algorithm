@@ -1,5 +1,6 @@
 package algorithm;
 
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -12,7 +13,7 @@ import java.util.*;
  */
 class Sort {
     private static Vector<Integer> v = new Vector<>();
-    private static int len, num, testTime = 0;
+    private static int len;
 
     //冒泡排序
     public void bubbleSort() {
@@ -240,7 +241,7 @@ class Sort {
         System.out.println("\n请输入待排序数组以空格隔开，Ctrl+D结束：");
         //输入任意数量的整数，Ctrl+D表示Eof
         while (in.hasNext()) {
-            num = in.nextInt();
+            int num = in.nextInt();
             v.add(num);
         }
     }
@@ -302,8 +303,7 @@ public class BasicSorts {
 
     private static void selectSort() {
         int i = 0;
-        for (String s :
-                sortName) {
+        for (String s : sortName) {
             System.out.printf("%d.%s.\n", ++i, s);
         }
         System.out.printf("请输入数字选择排序算法：\n");
