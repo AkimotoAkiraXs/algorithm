@@ -10,7 +10,7 @@ public class Hj3 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         in.nextInt();
-        Set<Integer> set = new TreeSet<>((Integer::compareTo));
+        Set<Integer> set = new TreeSet<>();
         while (in.hasNextLong()) {
             int a = in.nextInt();
             set.add(a);
