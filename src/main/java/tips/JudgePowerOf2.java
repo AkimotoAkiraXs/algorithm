@@ -11,10 +11,6 @@ import lombok.Data;
 @Data
 public class JudgePowerOf2 {
 
-    public static void main(String[] args) {
-
-    }
-
     public static boolean judge(int num) {
         // 利用计算机二进制
         return (num & (num - 1)) == 0;
