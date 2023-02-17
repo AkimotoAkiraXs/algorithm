@@ -4,8 +4,9 @@ package algorithm;
  * Q：快速获取n类素数 <br/>
  * 埃氏筛选法 <br/>
  * 欧拉筛选（线性筛）<br/>
- *
+ * 注意：大数素数获取不要用埃氏筛、欧拉筛（内存溢出），特别是数范围可以不断减小的情况，可参考 <code>{@link nowcoder.hj.Hj6}</code>
  * @author Yuri
+ * @see {@link nowcoder.hj.Hj6}
  * @since 2022/6/28 9:28
  */
 public class EratosthenesAndEuler {
@@ -37,6 +38,7 @@ public class EratosthenesAndEuler {
 
     private void eratosthenes() {
         vis[0] = vis[1] = true;
+        // 如果到了他的根号，还没有一个因子出现，那么后半部分也不会有因子出现了
         int sqrt = (int) Math.sqrt(MAX_N);
         for (int i = 2; i <= sqrt; i++) { //只需计算到sqrt(n)
             if (vis[i]) continue; //合数直接跳
