@@ -83,39 +83,41 @@ public class Hj16 {
             System.out.println(dp[N]);
         }
     }
+
+    private static class Item {
+        int n;
+        int price;
+        int value;
+        int dad;
+        List<Item> items = new ArrayList<>();
+
+        public Item(int n, int price, int value, int dad) {
+            this.n = n;
+            this.price = price;
+            this.value = value;
+            this.dad = dad;
+        }
+
+        public Item(int n, List<Item> items) {
+            this.n = n;
+            this.items = items;
+        }
+
+        @Override
+        public String toString() {
+            return "Item{" +
+                    "n=" + n +
+                    ", price=" + price +
+                    ", value=" + value +
+                    ", dad=" + dad +
+                    ", items=" + items +
+                    '}';
+        }
+
+        public int getWeight() {
+            return this.value * this.price * 10;
+        }
+    }
 }
 
-class Item {
-    int n;
-    int price;
-    int value;
-    int dad;
-    List<Item> items = new ArrayList<>();
 
-    public Item(int n, int price, int value, int dad) {
-        this.n = n;
-        this.price = price;
-        this.value = value;
-        this.dad = dad;
-    }
-
-    public Item(int n, List<Item> items) {
-        this.n = n;
-        this.items = items;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "n=" + n +
-                ", price=" + price +
-                ", value=" + value +
-                ", dad=" + dad +
-                ", items=" + items +
-                '}';
-    }
-
-    public int getWeight() {
-        return this.value * this.price * 10;
-    }
-}
