@@ -20,6 +20,7 @@ public class Hj24 {
         for (int i = 0; i < n; i++) {
             nums[i] = in.nextInt();
         }
+        // todo 最长子序列可以经过二分优化为n*Logn
         // 最长子序列 求出从右边起和从左边起的最长子序列
         for (int l = 0; l < n; l++) {
             left[l] = 1;
