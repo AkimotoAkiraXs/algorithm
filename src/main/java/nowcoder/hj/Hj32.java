@@ -6,6 +6,7 @@ import java.util.Scanner;
  * 中心扩展法
  *
  * @author Yuri
+ * @see leetcode.editor.cn.LongestPalindromicSubstring 动态规划 解法
  * @since 2023/2/26 0:36
  */
 
