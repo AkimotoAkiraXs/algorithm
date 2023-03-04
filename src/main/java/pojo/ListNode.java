@@ -3,6 +3,7 @@ package pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,10 @@ import java.util.stream.Collectors;
 public class ListNode {
     public int val;
     public ListNode next;
+
+    public ListNode(int val) {
+        this.val = val;
+    }
 
     public ListNode(int[] nums) {
         this(Arrays.stream(nums).boxed().collect(Collectors.toList()));
