@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @since 2023/2/21 0:38
  */
 
-public class H21 {
+public class Hj21 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
