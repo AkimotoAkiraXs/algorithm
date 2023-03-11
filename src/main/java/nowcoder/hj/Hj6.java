@@ -11,7 +11,7 @@ public class Hj6 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         // 不要用埃氏筛选法，数过大，空间开大了会爆内存
-        int n = Integer.parseInt(in.nextLine());
+        int n = in.nextInt();
         for (int i = 2; i <= Math.sqrt(n); i++) {
             while (n % i == 0) {
                 n /= i;
