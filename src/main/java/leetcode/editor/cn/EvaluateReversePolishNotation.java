@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Id：&emsp;&emsp;150 <br/>
  * Name：逆波兰表达式求值 <br/>
- * <p>中缀表达式 -> 逆波兰表达式 -> 栈辅助求值，此题为第2步到第3步的代码
+ * <p>中缀表达式 → 逆波兰表达式 → 栈辅助求值，此题为 逆波兰表达式 → 栈辅助求值 步骤的代码
  *
  * <p>参考：{@link algorithm.ReversePolishNotation 逆波兰表达式}
  *
