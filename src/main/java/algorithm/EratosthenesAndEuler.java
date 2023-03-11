@@ -4,9 +4,9 @@ package algorithm;
  * Q：快速获取n类素数 <br/>
  * 埃氏筛选法 <br/>
  * 欧拉筛选（线性筛）<br/>
- * 注意：大数素数获取不要用埃氏筛、欧拉筛（内存溢出），特别是数范围可以不断减小的情况，可参考 <code>{@link nowcoder.hj.Hj6}</code>
+ * 注意：大数素数获取不要用埃氏筛、欧拉筛（内存溢出），特别是数范围可以不断减小的情况
+ *
  * @author Yuri
- * @see {@link nowcoder.hj.Hj6}
  * @since 2022/6/28 9:28
  */
 public class EratosthenesAndEuler {
