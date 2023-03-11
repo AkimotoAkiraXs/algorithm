@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author Yuri
- * @Date 2021/8/27 14:59
- * @Version 1.0
- * @Description: mirror遍历算法 该算法能将遍历空间复杂度降为1 详解博客：https://blog.csdn.net/qq_38684427/article/details/107708469
- * 整体思路为：通过将当前结点的左子节点的最右子节点指向当前结点，形成一条能遍历整棵树的线路
+ * mirror遍历算法 该算法能将遍历空间复杂度降为 O(1) <br/>
+ * 整体思路为：通过将当前结点的左子节点的最右子节点指向当前结点，形成一条能遍历整棵树的线路 <br/>
+ *
+ * @author Yuri
+ * @see <a href="https://blog.csdn.net/qq_38684427/article/details/107708469">二叉树遍历</a>
+ * @since 2021/8/27 14:59
  */
+
 public class MirrorTraversing {
     public static void main(String[] args) {
 
@@ -132,7 +134,7 @@ class PostOrderTraversal {
 
     public TreeNode reverseEdge(TreeNode node) {
         TreeNode pre = null;
-        TreeNode next = null;
+        TreeNode next;
         while (node != null) {
             next = node.right;
             node.right = pre;
