@@ -28,24 +28,24 @@ public class EvaluateReversePolishNotation {
             Deque<Integer> stack = new ArrayDeque<>();
             for (String token : tokens) {
                 if (Objects.equals(token, "+")) {
-                    Integer a = stack.pollLast();
-                    Integer b = stack.pollLast();
+                    Integer a = stack.removeLast();
+                    Integer b = stack.removeLast();
                     stack.add(a + b);
                 } else if (Objects.equals(token, "-")) {
-                    Integer a = stack.pollLast();
-                    Integer b = stack.pollLast();
+                    Integer a = stack.removeLast();
+                    Integer b = stack.removeLast();
                     stack.add(b - a);
                 } else if (Objects.equals(token, "/")) {
-                    Integer a = stack.pollLast();
-                    Integer b = stack.pollLast();
+                    Integer a = stack.removeLast();
+                    Integer b = stack.removeLast();
                     stack.add(b / a);
                 } else if (Objects.equals(token, "*")) {
-                    Integer a = stack.pollLast();
-                    Integer b = stack.pollLast();
+                    Integer a = stack.removeLast();
+                    Integer b = stack.removeLast();
                     stack.add(a * b);
                 } else stack.add(Integer.valueOf(token));
             }
-            return stack.pollLast();
+            return stack.removeLast();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
