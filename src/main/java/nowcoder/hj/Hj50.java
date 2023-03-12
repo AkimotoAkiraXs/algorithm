@@ -58,8 +58,9 @@ public class Hj50 {
                     i++;
                 }
                 rpn.add(str.toString());
-            } else if (c == '-' || c == '+' || c == '*' || c == '/' || c == '(') {
-                while (!ops.isEmpty() && c != '(' && !Objects.equals(ops.peekLast(), "(") && priority(String.valueOf(c)) <= priority(ops.peekLast())) {
+            } else if (c == '(') ops.add(String.valueOf(c));
+            else if (c == '-' || c == '+' || c == '*' || c == '/') {
+                while (!ops.isEmpty() && priority(String.valueOf(c)) <= priority(ops.peekLast())) {
                     rpn.add(ops.pollLast());
                 }
                 ops.add(String.valueOf(c));
