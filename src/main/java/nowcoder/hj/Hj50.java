@@ -16,10 +16,10 @@ public class Hj50 {
         Deque<String> rpn = infixToRpn(in.nextLine());
         int res = evalRPN(rpn);
         System.out.println(res);
+
     }
 
-    // 预处理函数，可以根据具体题目进行处理
-    public static String init(String s) {
+    private static String init(String s) {
         // 去空格，对于infixToRpn()中对一元运算符的处理逻辑来说，提前去空格是有必要的
         s = s.replace(" ", "");
 
@@ -37,6 +37,13 @@ public class Hj50 {
         return s;
     }
 
+    // 获取优先级
+    private static int priority(String s) {
+        if (Objects.equals(s, "*") || Objects.equals(s, "/")) return 2;
+        else if (Objects.equals(s, "+") || Objects.equals(s, "-")) return 1;
+        else return 3; //'('返回3
+    }
+
     private static Deque<String> infixToRpn(String s) {
         s = init(s); // 初始化
         Deque<String> rpn = new LinkedList<>();
@@ -51,9 +58,8 @@ public class Hj50 {
                     i++;
                 }
                 rpn.add(str.toString());
-            } else if (c == '(' || c == '*' || c == '/') ops.add(String.valueOf(c));
-            else if (c == '-' || c == '+') {
-                while (!ops.isEmpty() && !Objects.equals(ops.peekLast(), "(")) {
+            } else if (c == '-' || c == '+' || c == '*' || c == '/' || c == '(') {
+                while (!ops.isEmpty() && c != '(' && !Objects.equals(ops.peekLast(), "(") && priority(String.valueOf(c)) <= priority(ops.peekLast())) {
                     rpn.add(ops.pollLast());
                 }
                 ops.add(String.valueOf(c));
@@ -70,7 +76,7 @@ public class Hj50 {
     }
 
     // 逆波兰表达式求值
-    public static int evalRPN(Deque<String> tokens) {
+    private static int evalRPN(Deque<String> tokens) {
         Deque<Integer> stack = new ArrayDeque<>();
         for (String token : tokens) {
             if (Objects.equals(token, "+")) {
