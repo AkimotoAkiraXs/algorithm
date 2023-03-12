@@ -13,9 +13,7 @@ public class Hj50 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Deque<String> rpn = infixToRpn(in.nextLine());
-        int res = evalRPN(rpn);
-        System.out.println(res);
+        System.out.println(evalExpression(in.nextLine()));
 
     }
 
@@ -41,13 +39,33 @@ public class Hj50 {
     private static int priority(String s) {
         if (Objects.equals(s, "*") || Objects.equals(s, "/")) return 2;
         else if (Objects.equals(s, "+") || Objects.equals(s, "-")) return 1;
-        else return 3; //'('返回3
+        else return 0; //'('返回3
     }
 
-    private static Deque<String> infixToRpn(String s) {
+    private static void eval(Deque<Integer> nums, Deque<Character> ops) {
+        if (nums.size() < 2 || ops.size() < 1) return;
+        int a = nums.removeLast();
+        int b = nums.removeLast();
+        char op = ops.removeLast();
+        switch (op) {
+            case '+':
+                nums.add(b + a);
+                break;
+            case '-':
+                nums.add(b - a);
+                break;
+            case '*':
+                nums.add(b * a);
+                break;
+            case '/':
+                nums.add(b / a);
+        }
+    }
+
+    public static int evalExpression(String s) {
         s = init(s); // 初始化
-        Deque<String> rpn = new LinkedList<>();
-        Deque<String> ops = new LinkedList<>();
+        Deque<Integer> nums = new LinkedList<>();
+        Deque<Character> ops = new LinkedList<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (Character.isDigit(c) || (c == '-' && (i == 0 || s.charAt(i - 1) == '('))) {
@@ -57,47 +75,22 @@ public class Hj50 {
                     str.append(c);
                     i++;
                 }
-                rpn.add(str.toString());
-            } else if (c == '(') ops.add(String.valueOf(c));
+                nums.add(Integer.parseInt(str.toString()));
+            } else if (c == '(') ops.add(c);
             else if (c == '-' || c == '+' || c == '*' || c == '/') {
-                while (!ops.isEmpty() && priority(String.valueOf(c)) <= priority(ops.peekLast())) {
-                    rpn.add(ops.pollLast());
+                while (!ops.isEmpty() && priority(String.valueOf(c)) <= priority(String.valueOf(ops.peekLast()))) {
+                    eval(nums, ops);
                 }
-                ops.add(String.valueOf(c));
+                ops.add(c);
             } else if (c == ')') {
                 // 如果遇到右括号 ')'，则要把ops中的符号压入rpn中，直到遇到左括号 '('
-                String op;
-                while (!Objects.equals(op = ops.pollLast(), "(")) rpn.add(op);
+                while (ops.getLast() != '(') eval(nums, ops);
+                ops.removeLast(); // 去掉栈顶的'('
             }
         }
         while (!ops.isEmpty()) {
-            rpn.add(ops.pollLast()); // 最后ops中剩余符号需要倒序压入rpn
+            eval(nums, ops);
         }
-        return rpn;
-    }
-
-    // 逆波兰表达式求值
-    private static int evalRPN(Deque<String> tokens) {
-        Deque<Integer> stack = new ArrayDeque<>();
-        for (String token : tokens) {
-            if (Objects.equals(token, "+")) {
-                Integer a = stack.pollLast();
-                Integer b = stack.pollLast();
-                stack.add(a + b);
-            } else if (Objects.equals(token, "-")) {
-                Integer a = stack.pollLast();
-                Integer b = stack.pollLast();
-                stack.add(b - a);
-            } else if (Objects.equals(token, "/")) {
-                Integer a = stack.pollLast();
-                Integer b = stack.pollLast();
-                stack.add(b / a);
-            } else if (Objects.equals(token, "*")) {
-                Integer a = stack.pollLast();
-                Integer b = stack.pollLast();
-                stack.add(a * b);
-            } else stack.add(Integer.valueOf(token));
-        }
-        return stack.pollLast();
+        return nums.removeLast();
     }
 }
