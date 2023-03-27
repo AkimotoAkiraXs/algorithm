@@ -11,7 +11,7 @@ public class Hj71 {
     private static String regex;
     private static String s;
 
-    // 可以用replaceAll做但是没意义
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         StringBuilder sb = new StringBuilder(in.nextLine().toLowerCase());
@@ -21,6 +21,12 @@ public class Hj71 {
         }
         regex = sb.toString();
         s = in.nextLine().toLowerCase();
+/*
+        // 可以用replaceAll做但是没意义正则偷鸡
+        regex = regex.replaceAll("\\?","[0-9a-z]{1}");
+        regex = regex.replaceAll("\\*","[0-9a-z]{0,}");
+        System.out.println(s.matches(regex));
+*/
         System.out.println(recur(0, 0));
 
     }
