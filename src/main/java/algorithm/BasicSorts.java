@@ -6,10 +6,9 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * @Author Yuri
- * @Date 2021/8/27 14:59
- * @Version 1.0
- * @Description: 十大基础排序 Blog：https://www.cnblogs.com/AkimotoAkira/p/14023436.html
+ * @author Yuri
+ * @see <a href="https://www.cnblogs.com/AkimotoAkira/p/14023436.html">十大基础排序</a>
+ * @since 2021/8/27 14:59
  */
 class Sort {
     private static Vector<Integer> v = new Vector<>();
