@@ -1,28 +1,31 @@
 package nowcoder.hj;
 
-import java.util.Arrays;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * @author Yuri
- * @since 2023/3/13 11:36
+ * @since 2023/3/13 11:58
  */
 
 public class Hj60 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String s = in.nextLine();
-        Map<String, Long> map = Arrays.stream(s.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        for (Character c : s.toCharArray()) {
-            if (map.get(String.valueOf(c)) == 1) {
-                System.out.println(c);
-                return;
+        int n = in.nextInt();
+
+        // 埃氏筛
+        boolean[] era = new boolean[n + 1];
+        era[0] = era[1] = true;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (era[i]) continue;
+            for (int j = 2; j * i <= n; j++) era[i * j] = true;
+        }
+
+        for (int i = n / 2; i >= 2; i--) {
+            if (!era[i] && !era[n - i]) {
+                System.out.println(i);
+                System.out.println(n - i);
+                break;
             }
         }
-        System.out.println("-1");
     }
-
 }
