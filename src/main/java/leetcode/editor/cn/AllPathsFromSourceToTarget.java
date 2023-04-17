@@ -43,9 +43,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Id：&emsp;&emsp;797
@@ -58,6 +56,7 @@ import java.util.stream.Collectors;
 public class AllPathsFromSourceToTarget {
     public static void main(String[] args) {
         Solution solution = new AllPathsFromSourceToTarget().new Solution();
+        solution.allPathsSourceTarget(new int[][]{{1, 2}, {3}, {3}, {}});
         System.out.println();
     }
 
@@ -72,21 +71,16 @@ public class AllPathsFromSourceToTarget {
             n = graph.length;
             List<Integer> initPath = new ArrayList<>();
             initPath.add(0);
-            List<Integer> initOptions = Arrays.stream(dag[0]).boxed().collect(Collectors.toList());
-            dfs(initOptions, initPath);
+            dfs(0, initPath);
             return ans;
         }
 
-        void dfs(List<Integer> values, List<Integer> lastPath) {
-            for (Integer value : values) {
-                List<Integer> path = new ArrayList<>(lastPath);
-                path.add(value);
-                if (value == n - 1) {
-                    ans.add(path);
-                } else {
-                    List<Integer> options = Arrays.stream(dag[value]).boxed().collect(Collectors.toList());
-                    dfs(options, path);
-                }
+        void dfs(int index, List<Integer> lastPath) {
+            for (Integer value : dag[index]) {
+                lastPath.add(value);
+                if (value == n - 1) ans.add(new ArrayList<>(lastPath));
+                else dfs(value, lastPath);
+                lastPath.remove(lastPath.size() - 1);
             }
         }
     }
