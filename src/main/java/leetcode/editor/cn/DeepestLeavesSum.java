@@ -33,7 +33,7 @@
 package leetcode.editor.cn;
 
 
-import pojo.TreeNode;
+import model.TreeNode;
 
 /**
  * Id：&emsp;&emsp;1302

@@ -57,7 +57,7 @@
  */
 package leetcode.editor.cn;
 
-import pojo.TreeNode;
+import model.TreeNode;
 
 public class SumRootToLeafNumbers {
     public static void main(String[] args) {

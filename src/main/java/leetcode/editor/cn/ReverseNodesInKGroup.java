@@ -1,7 +1,7 @@
 package leetcode.editor.cn;
 
 import com.google.common.collect.Lists;
-import pojo.ListNode;
+import model.ListNode;
 
 /**
  * Id：&emsp;&emsp;25

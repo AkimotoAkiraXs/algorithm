@@ -49,7 +49,7 @@
  */
 package leetcode.editor.cn;
 
-import pojo.ListNode;
+import model.ListNode;
 
 public class ReverseLinkedList {
     public static void main(String[] args) {

@@ -41,7 +41,7 @@
  */
 package leetcode.editor.cn;
 
-import pojo.TreeNode;
+import model.TreeNode;
 
 public class BinaryTreeMaximumPathSum {
     public static void main(String[] args) {

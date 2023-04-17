@@ -46,7 +46,7 @@
  */
 package leetcode.editor.cn;
 
-import pojo.ListNode;
+import model.ListNode;
 
 public class RemoveNthNodeFromEndOfList {
     public static void main(String[] args) {

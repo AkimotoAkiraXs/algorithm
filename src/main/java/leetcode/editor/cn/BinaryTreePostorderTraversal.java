@@ -23,7 +23,7 @@
  */
 package leetcode.editor.cn;
 
-import pojo.TreeNode;
+import model.TreeNode;
 
 import java.util.List;
 import java.util.Stack;

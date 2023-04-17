@@ -41,7 +41,7 @@
  */
 package leetcode.editor.cn;
 
-import pojo.ListNode;
+import model.ListNode;
 
 public class MiddleOfTheLinkedList {
     public static void main(String[] args) {

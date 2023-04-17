@@ -38,7 +38,7 @@
  */
 package leetcode.editor.cn;
 
-import pojo.TreeNode;
+import model.TreeNode;
 
 public class SymmetricTree {
     public static void main(String[] args) {

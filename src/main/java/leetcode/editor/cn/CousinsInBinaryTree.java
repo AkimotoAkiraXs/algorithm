@@ -53,7 +53,7 @@
  */
 package leetcode.editor.cn;
 
-import pojo.TreeNode;
+import model.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

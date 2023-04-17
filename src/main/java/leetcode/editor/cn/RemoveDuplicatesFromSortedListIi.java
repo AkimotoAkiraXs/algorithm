@@ -32,7 +32,7 @@
 
 package leetcode.editor.cn;
 
-import pojo.ListNode;
+import model.ListNode;
 
 /**
  * Id：&emsp;&emsp;82
