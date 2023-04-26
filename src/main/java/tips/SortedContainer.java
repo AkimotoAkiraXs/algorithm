@@ -11,6 +11,7 @@ import java.util.*;
 
 public class SortedContainer {
     public static void main(String[] args) {
+
         // TreeMap自带顺序
         Map<Integer, Integer> map = new TreeMap<>();
         // TreeMap倒排
@@ -21,5 +22,8 @@ public class SortedContainer {
         // TreeSet倒排
         Set<Integer> reverseSet = new TreeSet<>(Collections.reverseOrder());
 
+        // int[]数组倒排
+        int[] nums = new int[]{1};
+        nums = Arrays.stream(nums).boxed().sorted(Collections.reverseOrder()).mapToInt(o -> o).toArray();
     }
 }
