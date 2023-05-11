@@ -1,5 +1,5 @@
 ${question.content}
-package leetcode.editor.cn;
+package problem.leetcode.editor.cn;
 
 /**
  * Id：&emsp;&emsp;${question.frontendQuestionId}
@@ -7,7 +7,7 @@ package leetcode.editor.cn;
  * Name：${question.title}
  *
  * @author Yuri
- * @since 2022-07-06 14:56:36
+ * @since $!velocityTool.date()
  */
 
 public class $!velocityTool.camelCaseName(${question.titleSlug}){
