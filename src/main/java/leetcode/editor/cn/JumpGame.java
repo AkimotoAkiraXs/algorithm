@@ -50,44 +50,14 @@ public class JumpGame {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        int[] s;
-        int length;
-
-        public boolean jump(int index, boolean res) {
-            if (res || s[index] == -1) {
-                return res;
-            }
-            int k = s[index];
-            s[index] = -1; //标记位置
-            if (k + index + 1 >= length) {
-                return true;
-            }
-            for (int i = 1; i <= k; i++) {
-                if (jump(index + i, res)) {
-                    return true;
-                }
+        public boolean canJump(int[] nums) {
+            int max = 0;
+            for (int i = 0; i < nums.length && i <= max; i++) {
+                int num = nums[i];
+                max = Integer.max(max, num + i);
+                if (max >= nums.length - 1) return true;
             }
             return false;
-        }
-
-        public boolean canJump(int[] nums) {
-            s = nums;
-            length = nums.length;
-            return jump(0, false);
-        }
-
-        //标准题解
-        public boolean canJumpAC(int[] nums) {
-            int r = 0;  //能跳到最右边的点
-            for (int i = 0; i < nums.length; ++i) {
-                if (i <= r) {   //如果i小于等于r代表能到达i这个点
-                    r = Math.max(r, i + nums[i]);   //更新能达到的最右边的点
-                    if (r >= nums.length - 1) {
-                        return true;//如果最右边的点超过了数组大小，返回true
-                    }
-                }
-            }
-            return false;   //说明达不到最右边，返回false
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
