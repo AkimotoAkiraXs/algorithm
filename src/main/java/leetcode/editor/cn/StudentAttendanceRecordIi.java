@@ -76,6 +76,45 @@ public class StudentAttendanceRecordIi {
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+/*
+        // 记忆化搜索dfs o(6n)
+        int mod = (int) 1e9 + 7;
+        int[][][] cache;
+
+        public int checkRecord(int n) {
+            cache = new int[n + 1][2][3];
+            return dfs(n, 0, 0);
+        }
+
+        int dfs(int u, int aCnt, int lCnt) {
+            if (aCnt >= 2) return 0;
+            if (lCnt >= 3) return 0;
+            if (u == 0) return 1;
+            if (cache[u][aCnt][lCnt] != 0) return cache[u][aCnt][lCnt];
+            int ans;
+            ans = dfs(u - 1, aCnt + 1, 0) % mod; // A
+            ans = (ans + dfs(u - 1, aCnt, lCnt + 1)) % mod; // L
+            ans = (ans + dfs(u - 1, aCnt, 0)) % mod; // P
+            cache[u][aCnt][lCnt] = ans;
+            return ans;
+        }
+*/
+        // todo 矩阵快速幂
+        /**
+         * 矩阵快速幂，利用线性数学中矩阵来解决该问题 <br>
+         * time:o(logn)
+         * space:o(1)
+         *
+         * @see <a href="https://leetcode.cn/problems/student-attendance-record-ii/solution/gong-shui-san-xie-yi-ti-san-jie-ji-yi-hu-fdfx/">学生出勤记录 II:矩阵快速幂</a>
+         */
+        public int checkRecord(int n) {
+            return 0;
+        }
+
+
+/*
+        // 自解：两个dp数组，一个记录包含A的情况，一个记录不包含A的情况，分别枚举当前位为P、A、L的情况进行计算
         public int checkRecord(int n) {
             final double mod = 10e8 + 7;
             double[] dp = new double[n + 3];
@@ -94,6 +133,7 @@ public class StudentAttendanceRecordIi {
             }
             return (int) (dp[n] % mod);
         }
+*/
     }
 // leetcode submit region end(Prohibit modification and deletion)
 
