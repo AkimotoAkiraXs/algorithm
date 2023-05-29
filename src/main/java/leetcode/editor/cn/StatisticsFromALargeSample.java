@@ -38,7 +38,7 @@ public class StatisticsFromALargeSample {
                         mode = i;
                     }
                     if (cnt < left && cnt + count[i] >= left) median += i;
-                    if (cnt < right && cnt + count[i] >= right) median+= i;
+                    if (cnt < right && cnt + count[i] >= right) median += i;
                     cnt += count[i];
                 }
             }
