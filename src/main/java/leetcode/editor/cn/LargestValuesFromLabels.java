@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
 
-import javafx.util.Pair;
+import cn.hutool.core.lang.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class LargestValuesFromLabels {
         System.out.println();
     }
 
-    //leetcode submit region begin(Prohibit modification and deletion)
+    // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         // 贪心：排序+哈希表
         public int largestValsFromLabels(int[] values, int[] labels, int numWanted, int useLimit) {
@@ -46,6 +46,6 @@ public class LargestValuesFromLabels {
             return res;
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+// leetcode submit region end(Prohibit modification and deletion)
 
 }
