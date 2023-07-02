@@ -6,7 +6,7 @@ plugins {
 
 group = 'Akimoto.Akira'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '17'
 
 configurations {
     compileOnly {
@@ -30,6 +30,10 @@ dependencies {
 
     //guava: Java support by google
     implementation("com.google.guava:guava:31.0.1-jre")
+
+    //Jdk8升级为11后 引入hutool的Pair作为代替
+    implementation group: 'cn.hutool', name: 'hutool-core', version: '5.8.18'
+
 }
 
 tasks.withType(JavaCompile) {

@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
 
-import javafx.util.Pair;
+import cn.hutool.core.lang.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
