@@ -1,5 +1,8 @@
 package algorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Yuri
  * @since 2023/7/5 18:47
@@ -7,16 +10,47 @@ package algorithm;
 
 public class DynamicProgram {
 
+    public static void main(String[] args) {
+        MultiplePackage multiplePackage = new DynamicProgram().new MultiplePackage();
+        // int i = multiplePackage.monotonicQueueTemplate(4, 5, new int[]{3, 1, 3, 2}, new int[]{1, 2, 3, 4}, new int[]{2, 4, 4, 5});
+        // System.out.println(i);
+    }
 
-    // 多重背包-单调队列优化-
-    class MultiplePackageMonotonicQueue {
-        public static void main(String[] args) {
-            MultiplePackageMonotonicQueue multiplePackageMonotonicQueue = new DynamicProgram().new MultiplePackageMonotonicQueue();
-            // multiplePackageMonotonicQueue.template();
+    // 多重背包
+    private class MultiplePackage {
+
+        // 二进制优化模板
+        private int binaryTemplate(int N, int C, int[] s, int[] v, int[] w) {
+            List<Integer> worth = new ArrayList<>();
+            List<Integer> volume = new ArrayList<>();
+
+            // 扁平化转换为0-1背包
+            for (int i = 0; i < N; i++) {
+                int val = s[i]; // val表示剩下的，比如对于6来说，会压入1、2，剩余3不到4（2的指数）就直接压入3
+                for (int j = 1; j <= val; j *= 2) {
+                    worth.add(w[i] * j);
+                    volume.add(v[i] * j);
+                    val -= j;
+                }
+                if (val > 0) {
+                    worth.add(w[i] * val);
+                    volume.add(v[i] * val);
+                }
+            }
+
+            // 0-1背包求解过程
+            int n = worth.size();
+            int[] dp = new int[C + 1];
+            for (int i = 0; i < n; i++) {
+                for (int j = C; j >= 1; j--) {
+                    if (j >= volume.get(i)) dp[j] = Math.max(dp[j], dp[j - volume.get(i)] + worth.get(i));
+                }
+            }
+            return dp[C];
         }
 
-        // 模板
-        private int template(int N, int C, int[] s, int[] v, int[] w) {
+        // 单调队列优化模板模板
+        private int monotonicQueueTemplate(int N, int C, int[] s, int[] v, int[] w) {
             int[] dp = new int[C + 1];
             int[] q = new int[C + 1]; // 主队列，记录的是本次的结果
             int[] g; // 辅助队列，记录的是上一次的结果
