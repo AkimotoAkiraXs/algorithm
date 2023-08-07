@@ -14,7 +14,7 @@ public class Gcd {
         Gcd gcd = new Gcd();
         int a = 1071, b = 462;
         int gcdNumber = gcd.gcd(a, b);
-        int lcmNumber = (a * b) / gcdNumber; //lcm(a,b) * gcd(a,b) = a * b
+        int lcmNumber = (a * b) / gcdNumber; // lcm(a,b) * gcd(a,b) = a * b
         System.out.println("最大公约数:" + gcdNumber);
         System.out.println("最小公倍数:" + lcmNumber);
     }
@@ -28,6 +28,6 @@ public class Gcd {
      */
     private int gcd(int a, int b) {
         if (b == 0) return a;
-        else return gcd(b, a % b);
+        return gcd(b, a % b);
     }
 }
