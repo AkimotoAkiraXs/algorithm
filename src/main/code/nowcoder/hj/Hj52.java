@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author Yuri
  * @since 2023/4/10 19:42
  */
-public interface Hj52 {
+public class Hj52 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String sx = in.nextLine();

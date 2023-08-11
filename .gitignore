@@ -37,5 +37,4 @@ out/
 .vscode/
 
 ### LeetCode ###
-.md
-/src/main/java/leetcode/editor/cn/doc/
+/src/main/code/leetcode/editor/cn/doc/
