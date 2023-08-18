@@ -1,5 +1,8 @@
 package algorithm;
 
+import problems.leetcode.editor.cn.PerfectSquares;
+import problems.nowcoder.hj.Hj107;
+
 /**
  * 数学理论推导集合
  *
@@ -14,8 +17,8 @@ public class MathLogic {
     /**
      * 牛顿迭代公式：以一种无限逼近方程式结果的迭代公式来求得近似值
      * <p>
-     * {@link nowcoder.hj.Hj107 Hj107 求解立方根}
      *
+     * @see Hj107 Hj107 求解立方根
      * @see <a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95">wiki 牛顿迭代法</a>
      * @see <a href="https://oi-wiki.org/math/newton/">OI 牛顿迭代法</a>
      */
@@ -31,7 +34,8 @@ public class MathLogic {
      * 四平方和定理：四平方和定理证明了任意一个正整数都可以被表示为至多四个正整数的平方和。
      * 同时，n=4^k*(8*m+7)时只能被表示为四个正整数的平方和，否则至多被表示为三个正整数的平方和
      * <p>
-     * {@link leetcode.editor.cn.PerfectSquares Lc279 完全平方数}
+     *
+     * @see PerfectSquares Lc279 完全平方数
      */
     public static int LagrangeFourSquareTheorem(int n) {
         // 判断n最少可以被几个正整数完全平方和表示
