@@ -5,6 +5,8 @@ import problems.leetcode.editor.cn.ApplyOperationsToMaximizeScore;
 import java.util.Arrays;
 
 /**
+ * 数学相关模板
+ *
  * @author Yuri
  * @since 2023/7/14 16:35
  */
