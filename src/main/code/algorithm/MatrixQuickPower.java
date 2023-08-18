@@ -1,5 +1,8 @@
 package algorithm;
 
+import problems.leetcode.editor.cn.ApplyOperationsToMaximizeScore;
+import problems.leetcode.editor.cn.NThTribonacciNumber;
+
 /**
  * 矩阵快速幂：矩阵快速幂用于求解一般性问题，通过问题转换为矩阵运算来快速求解答案
  * <p>
@@ -8,8 +11,8 @@ package algorithm;
  * 主要用于logn时间复杂度求解n^m次方的场景
  *
  * @author Yuri
- * @see leetcode.editor.cn.NThTribonacciNumber 矩阵快速幂模板题-Lc1137 第N个泰波那契数
- * @see leetcode.editor.cn.ApplyOperationsToMaximizeScore Lc2818 操作使得分最大
+ * @see NThTribonacciNumber 矩阵快速幂模板题-Lc1137 第N个泰波那契数
+ * @see ApplyOperationsToMaximizeScore Lc2818 操作使得分最大
  * @since 2023/5/22 23:04
  */
 
