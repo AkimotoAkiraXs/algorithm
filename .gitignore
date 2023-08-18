@@ -38,3 +38,6 @@ out/
 
 ### LeetCode ###
 /src/main/code/leetcode/editor/cn/doc/
+
+### Cpp ###
+/cmake-build-debug/
