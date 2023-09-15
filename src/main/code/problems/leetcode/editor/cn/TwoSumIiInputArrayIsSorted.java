@@ -1,4 +1,4 @@
-//给定一个已按照 非递减顺序排列 的整数数组 numbers ，请你从数组中找出两个数满足相加之和等于目标数 target 。 
+// 给定一个已按照 非递减顺序排列 的整数数组 numbers ，请你从数组中找出两个数满足相加之和等于目标数 target 。
 //
 // 函数应该以长度为 2 的整数数组的形式返回这两个数的下标值。numbers 的下标 从 1 开始计数 ，所以答案数组应当满足 1 <= answer[0]
 // < answer[1] <= numbers.length 。 
@@ -9,23 +9,23 @@
 // 示例 1： 
 //
 // 
-//输入：numbers = [2,7,11,15], target = 9
-//输出：[1,2]
-//解释：2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
+// 输入：numbers = [2,7,11,15], target = 9
+// 输出：[1,2]
+// 解释：2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
 // 
 //
 // 示例 2： 
 //
 // 
-//输入：numbers = [2,3,4], target = 6
-//输出：[1,3]
+// 输入：numbers = [2,3,4], target = 6
+// 输出：[1,3]
 // 
 //
 // 示例 3： 
 //
 // 
-//输入：numbers = [-1,0], target = -1
-//输出：[1,2]
+// 输入：numbers = [-1,0], target = -1
+// 输出：[1,2]
 // 
 //
 // 
@@ -51,17 +51,29 @@
 package problems.leetcode.editor.cn;
 
 public class TwoSumIiInputArrayIsSorted {
+
     public static void main(String[] args) {
         Solution solution = new TwoSumIiInputArrayIsSorted().new Solution();
         System.out.println("Hello world");
     }
 
-    //leetcode submit region begin(Prohibit modification and deletion)
+    // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        // 优化代码
+        public int[] twoSum_(int[] numbers, int target) {
+            int l = 0;
+            for (int r = numbers.length - 1; r > l; r--) {
+                while (numbers[l] + numbers[r] < target) l++;
+                if (numbers[l] + numbers[r] == target) return new int[]{l + 1, r + 1};
+            }
+            return null;
+        }
+
         public int[] twoSum(int[] numbers, int target) {
             int l = numbers.length;
             int[] ans = new int[2];
-            int a = 0, b = l-1;
+            int a = 0, b = l - 1;
             while (a != b) {
                 int n = numbers[a] + numbers[b];
                 if (n == target) {
@@ -74,5 +86,5 @@ public class TwoSumIiInputArrayIsSorted {
             return ans;
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+// leetcode submit region end(Prohibit modification and deletion)
 } 
