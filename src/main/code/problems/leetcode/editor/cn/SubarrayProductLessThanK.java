@@ -49,12 +49,13 @@ public class SubarrayProductLessThanK {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int numSubarrayProductLessThanK(int[] nums, int k) {
-            if (k == 0 || k == 1) return 0;
-            int ans = 0, b = 0, n = 1;
-            for (int i = 0; i < nums.length; i++) {
-                n *= nums[i];
-                while (n >= k) n /= nums[b++];
-                ans += i - b + 1;
+            int n = nums.length;
+            long total = 1;
+            int ans = 0, l = 0;
+            for (int r = 0; r < n; r++) {
+                total *= nums[r];
+                while (l <= r && total >= k) total /= nums[l++];
+                ans += r - l + 1;
             }
             return ans;
         }
