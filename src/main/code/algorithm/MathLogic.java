@@ -1,6 +1,7 @@
 package algorithm;
 
 import problems.leetcode.editor.cn.PerfectSquares;
+import problems.leetcode.editor.cn.SumMultiples;
 import problems.nowcoder.hj.Hj107;
 
 /**
@@ -10,6 +11,7 @@ import problems.nowcoder.hj.Hj107;
  * @since 2023/4/7 17:11
  */
 public class MathLogic {
+
     public static void main(String[] args) {
 
     }
@@ -58,6 +60,24 @@ public class MathLogic {
 
         // 都不是则只有3了
         return 3;
+    }
+
+    /**
+     * 容斥原理：|A ∪ B ∪ C| = |A|+|B|+|C| - |A ∩ B| - |B ∩ C| - |C ∩ A| + |A ∩ B ∩ C|
+     *
+     * @see problems.leetcode.editor.cn.SumMultiples 倍数求和
+     * @see <a href="https://oi-wiki.org/math/combinatorics/inclusion-exclusion-principle/">容斥原理</a>
+     */
+    class SumMultiples {
+
+        public int sumOfMultiples(int n) {
+            return f(n, 3) + f(n, 5) + f(n, 7) - f(n, 3 * 5) - f(n, 3 * 7) - f(n, 5 * 7) + f(n, 3 * 5 * 7);
+        }
+
+        private int f(int n, int k) {
+            int x = n / k;
+            return (int) ((x * k + k) / 2.0 * x);
+        }
     }
 
 
