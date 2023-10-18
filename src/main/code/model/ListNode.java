@@ -1,5 +1,6 @@
 package model;
 
+import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,16 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ListNode {
+
     public int val;
     public ListNode next;
 
     public ListNode(int val) {
         this.val = val;
+    }
+
+    public ListNode(Integer... integers) {
+        this(Arrays.stream(integers).collect(Collectors.toList()));
     }
 
     public ListNode(int[] nums) {
