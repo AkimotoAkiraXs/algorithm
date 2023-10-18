@@ -70,27 +70,25 @@ public class ReverseLinkedList {
      */
     class Solution {
         // 巧妙递归
-        public ListNode reverseList(ListNode head) {
+        public ListNode reverseList_(ListNode head) {
             if (head == null || head.next == null) return head;
-            ListNode cur = reverseList(head.next);
+            ListNode cur = reverseList_(head.next);
             head.next.next = head;
             head.next = null;
             return cur;
         }
 
-/*
-        // 直男循环
+        // 迭代
         public ListNode reverseList(ListNode head) {
-            ListNode ans = null;
-            for (ListNode x = head; x != null; x = x.next) {
-                ans = new ListNode(x.val,ans);
+            ListNode pre = null;
+            while (head != null) {
+                ListNode next = head.next;
+                head.next = pre;
+                pre = head;
+                head = next;
             }
-            return ans;
+            return pre;
         }
-*/
-
-
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 } 
