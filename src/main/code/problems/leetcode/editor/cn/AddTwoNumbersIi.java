@@ -45,22 +45,25 @@
 package problems.leetcode.editor.cn;
 
 import model.ListNode;
+import org.checkerframework.checker.units.qual.K;
 
 /**
  * Id：&emsp;&emsp;445
  * <p>
  * Name：Add Two Numbers II
- * {@link leetcode.editor.cn.AddTwoNumbers 两数相加}
  *
  * @author Yuri
+ * @see AddTwoNumbers 两数相加
  * @since 2023-07-03 19:27:24
  */
 
 
 public class AddTwoNumbersIi {
+
     public static void main(String[] args) {
         Solution solution = new AddTwoNumbersIi().new Solution();
-        solution.add("7243", "564");
+        solution.addTwoNumbers(new ListNode(new int[]{6, 4, 5, 0, 4, 4, 9, 4, 1}),
+            new ListNode(new int[]{3, 8, 8, 0, 3, 0, 1, 4, 8}));
     }
 
     // leetcode submit region begin(Prohibit modification and deletion)
@@ -75,7 +78,50 @@ public class AddTwoNumbersIi {
      * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
+
     class Solution {
+
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            ListNode r1 = reverse(l1);
+            ListNode r2 = reverse(l2);
+            ListNode dummy = new ListNode(-1, r1);
+            int carry = 0;
+            ListNode pre = dummy;
+            while (r1 != null && r2 != null) {
+                int k = (r1.val + r2.val + carry) / 10;
+                r1.val = (r1.val + r2.val + carry) % 10;
+                carry = k;
+                pre = r1;
+                r1 = r1.next;
+                r2 = r2.next;
+            }
+            if (r1 == null) {
+                pre.next = r2;
+                r1 = r2;
+            }
+            while (carry != 0 && r1 != null) {
+                carry = (r1.val + 1) / 10;
+                r1.val = (r1.val + 1) % 10;
+                pre = r1;
+                r1 = r1.next;
+            }
+            if (carry != 0) pre.next = new ListNode(1, null);
+            return reverse(dummy.next);
+        }
+
+
+        private ListNode reverse(ListNode head) {
+            if (head == null || head.next == null) return head;
+            ListNode cur = reverse(head.next);
+            ListNode next = head.next.next;
+            head.next.next = head;
+            head.next = next;
+            return cur;
+        }
+    }
+
+    class Solution_ {
+
         // 这题可以用栈压数，就可以按顺序处理，也可以翻转链表
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
             StringBuilder s1 = new StringBuilder();
