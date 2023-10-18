@@ -61,30 +61,6 @@ public class MiddleOfTheLinkedList {
      * }
      */
     class Solution {
-        int a, b;
-        boolean flag = false;
-        ListNode ans;
-
-        public ListNode middleNode(ListNode head) {
-            a = b = 0;
-            recursion(head);
-            return ans;
-        }
-
-        private void recursion(ListNode node) {
-            if (node.next != null) {
-                b++;
-                recursion(node.next);
-            }
-            if (!flag && (a == b || a + 1 == b)) {
-                flag = true;
-                ans = node;
-            } else {
-                a++;
-                b--;
-            }
-        }
-/*
         //快慢指针 慢指针走一步 快指针走两步
         public ListNode middleNode(ListNode head) {
             ListNode slow = head, fast = head;
@@ -94,7 +70,6 @@ public class MiddleOfTheLinkedList {
             }
             return slow;
         }
-*/
     }
 //leetcode submit region end(Prohibit modification and deletion)
 } 
