@@ -1,4 +1,4 @@
-//存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除链表中所有存在数字重复情况的节点，只保留原始链表中 没有重复出现 的数字。 
+// 存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除链表中所有存在数字重复情况的节点，只保留原始链表中 没有重复出现 的数字。
 //
 // 返回同样按升序排列的结果链表。 
 //
@@ -7,15 +7,15 @@
 // 示例 1： 
 //
 // 
-//输入：head = [1,2,3,3,4,4,5]
-//输出：[1,2,5]
+// 输入：head = [1,2,3,3,4,4,5]
+// 输出：[1,2,5]
 // 
 //
 // 示例 2： 
 //
 // 
-//输入：head = [1,1,1,2,3]
-//输出：[2,3]
+// 输入：head = [1,1,1,2,3]
+// 输出：[2,3]
 // 
 //
 // 
@@ -43,13 +43,14 @@ import model.ListNode;
  * @since 2022-01-06 14:09:25
  */
 public class RemoveDuplicatesFromSortedListIi {
+
     public static void main(String[] args) {
         Solution solution = new RemoveDuplicatesFromSortedListIi().new Solution();
-        solution.deleteDuplicates(new ListNode(new int[]{1, 2, 3, 3, 4, 4, 5}));
+
         System.out.println();
     }
 
-    //leetcode submit region begin(Prohibit modification and deletion)
+// leetcode submit region begin(Prohibit modification and deletion)
 
     /**
      * Definition for singly-linked list.
@@ -62,6 +63,7 @@ public class RemoveDuplicatesFromSortedListIi {
      * }
      */
     class Solution {
+
         public ListNode deleteDuplicates(ListNode head) {
             if (head == null) return null;
             ListNode dummy = new ListNode(0, head);
@@ -69,17 +71,12 @@ public class RemoveDuplicatesFromSortedListIi {
             while (cur.next != null && cur.next.next != null) {
                 if (cur.next.val == cur.next.next.val) {
                     int x = cur.next.val;
-                    while (cur.next != null && cur.next.val == x) {
-                        cur.next = cur.next.next;
-                    }
-                }
-                else {
-                    cur = cur.next;
-                }
+                    while (cur.next != null && cur.next.val == x) cur.next = cur.next.next;
+                } else cur = cur.next;
             }
             return dummy.next;
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+// leetcode submit region end(Prohibit modification and deletion)
 
 }
