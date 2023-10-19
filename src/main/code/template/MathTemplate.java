@@ -18,7 +18,7 @@ public class MathTemplate {
 
     public static void main(String[] args) {
         MathTemplate mathTemplate = new MathTemplate();
-        System.out.println(Arrays.toString(mathTemplate.eratosthenes(10000)));
+        System.out.println(mathTemplate.combination(31, 15));
     }
 
     /**
@@ -70,23 +70,38 @@ public class MathTemplate {
     /**
      * 排列模板 A(n,k)
      */
-    private int permutation(int n, int k) {
-        int res = 1;
-        for (int i = 0; i < k; i++) res *= n--;
+    private long permutation(int n, int k) {
+        if (n < k) return 0;
+        long res = 1;
+        while (k-- > 0) res *= n--;
         return res;
     }
 
     /**
      * 组合模板 C(n,k)
      */
-    private int combination(int n, int k) {
-        if (k > n / 2) k = n - k;
+    private long combination(int n, int k) {
+        if (n < k) return 0;
         long a = 1, b = 1;
-        for (int i = 0; i < k; i++) {
+        while (k > 0) {
             a *= n--;
-            b *= i + 1;
+            b *= k--;
+            // int gcd = gcd(a, b);
+            // a /= gcd;
+            // b /= gcd;
         }
-        return (int) (a / b);
+        return a / b;
+    }
+
+
+    private int gcd(int a, int b) {
+        if (b == 0) return a;
+        if (b > a) {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+        return gcd(b, a % b);
     }
 
 }
