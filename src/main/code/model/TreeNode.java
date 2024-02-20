@@ -20,6 +20,10 @@ public class TreeNode {
     public TreeNode right;
 
 
+    public TreeNode(Integer val) {
+        this.val = val;
+    }
+
     public TreeNode(Integer[] nums) {
         if (nums == null) {
             return;
