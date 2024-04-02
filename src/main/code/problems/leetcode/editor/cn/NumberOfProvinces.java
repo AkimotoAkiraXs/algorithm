@@ -60,13 +60,14 @@ public class NumberOfProvinces {
     public static void main(String[] args) {
         Solution solution = new NumberOfProvinces().new Solution();
         int circleNum = solution.findCircleNum(new int[][]{{1, 0, 0, 1}, {0, 1, 1, 0}, {0, 1, 1, 1}, {1, 0, 1, 1}});
-        System.out.println("ans:"+circleNum);
+        System.out.println("ans:" + circleNum);
 
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findCircleNum(int[][] isConnected) {
+        // bfs
+        public int findCircleNum_bfs(int[][] isConnected) {
             int n = isConnected.length;
             int ans = 0;
             boolean[] flag = new boolean[n];
@@ -99,7 +100,33 @@ public class NumberOfProvinces {
             }
             return ans;
         }
+
+        // dfs
+        public int findCircleNum(int[][] isConnected) {
+            int cnt = 0;
+            for (int i = 0; i < isConnected.length; i++) {
+                for (int j = 0; j < isConnected[i].length; j++) {
+                    if (isConnected[i][j] == 1) {
+                        cnt++;
+                        isConnected[i][j] = 0;
+                        isConnected[j][i] = 0;
+                        dfs(isConnected, j);
+                    }
+                }
+            }
+            return cnt;
+        }
+
+        public void dfs(int[][] isConnected, int k) {
+            for (int i = 0; i < isConnected[k].length; i++) {
+                if (isConnected[k][i] == 1) {
+                    isConnected[k][i] = 0;
+                    isConnected[i][k] = 0;
+                    dfs(isConnected, i);
+                }
+            }
+        }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
