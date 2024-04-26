@@ -61,72 +61,44 @@ public class FindAllAnagramsInAString {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        /**
-         * <p>
-         * 优化滑动窗口
-         * </p>
-         * Reflection: 对p内字母数做记录，然后遍历s进行抵消。
-         * 如果s中有连续子串能匹配p（含有不同字符个数相同）那么一定会有连续p.length次cnt[s.charAt(hi)] > 0
-         * 此时hi就会连续加p.length次，最后满足hi-lo=p.length.
-         * 当遇到一个不曾含有的字符，这hi一直等待，知道lo+1=hi，此时该字符被记录，在下一次比较中被抵消.
-         */
+        // 双指针
         public List<Integer> findAnagrams(String s, String p) {
-            int[] cnt = new int[128];
-            for (char c : p.toCharArray()) cnt[c]++;
-            int lo = 0, hi = 0;
             List<Integer> res = new ArrayList<>();
-            while (hi < s.length()) {
-                if (cnt[s.charAt(hi)] > 0) {
-                    cnt[s.charAt(hi)]--;
-                    hi++;
-                    if (hi - lo == p.length()) res.add(lo);
-                } else {
-                    cnt[s.charAt(lo)]++;
-                    lo++;
-                }
+            int[] cnt = new int['z' + 1];
+            for (Character c : p.toCharArray()) cnt[c]--;
+            int l = 0;
+            for (int r = 0; r < s.length(); r++) {
+                cnt[s.charAt(r)]++;
+                while (cnt[s.charAt(r)] > 0) cnt[s.charAt(l++)]--;
+                if (r - l + 1 == p.length()) res.add(l);
             }
             return res;
         }
 
-        // 普通滑动窗口 Map做标记比较
-/*
-        public List<Integer> findAnagrams(String s, String p) {
-            List<Integer> ans = new ArrayList<>();
-            if (s.length() < p.length()) {
-                return ans;
+        public List<Integer> findAnagrams_slidingWindows(String s, String p) {
+            List<Integer> res = new ArrayList<>();
+            int[] cnt = new int['z' + 1];
+            int dif = 0;
+            for (Character c : p.toCharArray()) {
+                if (cnt[c] == 0) dif++;
+                cnt[c]--;
             }
-            Map<Character, Integer> sMap = new HashMap<>();
-            Map<Character, Integer> pMap = new HashMap<>();
-            for (int i = 0; i < p.length(); i++) {
-                sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0) + 1);
-                pMap.put(p.charAt(i), pMap.getOrDefault(p.charAt(i), 0) + 1);
-            }
-            if (compareMap(pMap, sMap)) {
-                ans.add(0);
-            }
-            for (int i = p.length(); i < s.length(); i++) {
-                char c = s.charAt(i - p.length());
-                if (c != s.charAt(i)) {
-                    Integer num = sMap.get(c);
-                    if (num == 1) sMap.remove(c);
-                    else sMap.put(c, num - 1);
-                    sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0) + 1);
+            int l = 0;
+            for (int r = 0; r < s.length(); r++) {
+                char c = s.charAt(r);
+                cnt[c]++;
+                if (cnt[c] == 0) dif--;
+                else if (cnt[c] == 1) dif++;
+                if (r - l >= p.length()){
+                    char cc = s.charAt(l);
+                    cnt[cc]--;
+                    if (cnt[cc] == 0) dif--;
+                    else if (cnt[cc] == -1) dif++;
+                    l++;
                 }
-                if (compareMap(pMap, sMap)) {
-                    ans.add(i - p.length() + 1);
-                }
+                if (dif == 0) res.add(l);
             }
-            return ans;
-        }
-*/
-
-        private boolean compareMap(Map<Character, Integer> map1, Map<Character, Integer> map2) {
-            for (Map.Entry<Character, Integer> entry : map1.entrySet()) {
-                if (!Objects.equals(entry.getValue(), map2.get(entry.getKey()))) {
-                    return false;
-                }
-            }
-            return true;
+            return res;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
