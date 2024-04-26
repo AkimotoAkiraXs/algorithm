@@ -2,8 +2,6 @@ package template;
 
 import problems.leetcode.editor.cn.ApplyOperationsToMaximizeScore;
 
-import java.util.Arrays;
-
 /**
  * 数学相关模板
  *
@@ -13,8 +11,6 @@ import java.util.Arrays;
 
 
 public class MathTemplate {
-
-    private final static int mod = (int) 1e9 + 7;
 
     public static void main(String[] args) {
         MathTemplate mathTemplate = new MathTemplate();
@@ -60,9 +56,9 @@ public class MathTemplate {
      * <p>
      * 以logn的复杂度快速求幂，一般因为有取余无法调用方法
      */
-    private long mfp(long num, int p) {
+    private long mfp(long num, int p, int mod) {
         if (p == 0) return 1;
-        long mfp = mfp(num, p / 2);
+        long mfp = mfp(num, p / 2, mod);
         if ((p & 1) == 1) return (mfp * mfp % mod * num) % mod;
         return (mfp * mfp) % mod;
     }
