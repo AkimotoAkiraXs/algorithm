@@ -1,7 +1,7 @@
 package algorithm;
 
+import problems.leetcode.editor.cn.FindSubstringWithGivenHashValue;
 import problems.leetcode.editor.cn.PerfectSquares;
-import problems.leetcode.editor.cn.SumMultiples;
 import problems.nowcoder.hj.Hj107;
 
 /**
@@ -77,6 +77,26 @@ public class MathLogic {
         private int f(int n, int k) {
             int x = n / k;
             return (int) ((x * k + k) / 2.0 * x);
+        }
+    }
+
+    /**
+     * 秦九韶算法/霍纳规则
+     * <p>
+     * 用于快速求解 a0*p^0 + a1*p^1 + ... + an*p^n的一元n次多项式
+     *
+     * @see <a href="https://zhuanlan.zhihu.com/p/51300835">秦九韶算法：快速计算多项式的值</a>
+     * @see FindSubstringWithGivenHashValue Lc.2156 查找给定哈希值的子串
+     */
+    class HornerAlgorithm {
+
+        public int horner(int[] a, int p) {
+            int n = a.length;
+            int hash = 0;
+            for (int i = n - 1; i >= 0; i--) { // 从后向前
+                hash = hash * p + a[i];
+            }
+            return hash;
         }
     }
 
