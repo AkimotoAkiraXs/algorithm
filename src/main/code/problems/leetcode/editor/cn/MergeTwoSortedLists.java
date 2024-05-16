@@ -1,26 +1,26 @@
-//将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+// 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
 //
 // 
 //
 // 示例 1： 
 //
 // 
-//输入：l1 = [1,2,4], l2 = [1,3,4]
-//输出：[1,1,2,3,4,4]
+// 输入：l1 = [1,2,4], l2 = [1,3,4]
+// 输出：[1,1,2,3,4,4]
 // 
 //
 // 示例 2： 
 //
 // 
-//输入：l1 = [], l2 = []
-//输出：[]
+// 输入：l1 = [], l2 = []
+// 输出：[]
 // 
 //
 // 示例 3： 
 //
 // 
-//输入：l1 = [], l2 = [0]
-//输出：[0]
+// 输入：l1 = [], l2 = [0]
+// 输出：[0]
 // 
 //
 // 
@@ -37,48 +37,62 @@
 
 
 /*
-  * Id：21
-  * Name：合并两个有序链表
-  * Date：2021-10-27 13:59:34
-*/
+ * Id：21
+ * Name：合并两个有序链表
+ * Date：2021-10-27 13:59:34
+ */
 package problems.leetcode.editor.cn;
 
 import model.ListNode;
 
 public class MergeTwoSortedLists {
+
     public static void main(String[] args) {
         Solution solution = new MergeTwoSortedLists().new Solution();
         System.out.println("Hello world");
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if (l1 == null && l2 == null) {
+    // leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution {
+
+        public ListNode mergeTwoLists_(ListNode l1, ListNode l2) {
+            ListNode root = new ListNode();
+            ListNode dummy = root;
+            while (l1 != null || l2 != null) {
+                if (l1 == null || (l2 != null && l2.val < l1.val)) {
+                    dummy.next = l2;
+                    l2 = l2.next;
+                } else {
+                    dummy.next = l1;
+                    l1 = l1.next;
+                }
+                dummy = dummy.next;
+            }
+            return root.next;
+        }
+
+        // dfs
+        public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+            if (l1 != null || l2 != null) {
+                if (l1 == null || (l2 != null && l2.val < l1.val)) {
+                    l2.next = mergeTwoLists(l1, l2.next);
+                    return l2;
+                }
+                l1.next = mergeTwoLists(l1.next, l2);
+                return l1;
+            }
             return null;
         }
-        ListNode child = new ListNode();
-        if (l1 == null) {
-            child.val = l2.val;
-            child.next = mergeTwoLists(null, l2.next);
-        } else if (l2 == null || l1.val < l2.val) {
-            child.val = l1.val;
-            child.next = mergeTwoLists(l1.next, l2);
-        }else {
-            child.val = l2.val;
-            child.next = mergeTwoLists(l1, l2.next);
-        }
-        return child;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+// leetcode submit region end(Prohibit modification and deletion)
 } 
