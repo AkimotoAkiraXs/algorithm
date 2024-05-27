@@ -54,6 +54,7 @@
  */
 package problems.leetcode.editor.cn;
 
+import cn.hutool.core.lang.Pair;
 import java.util.*;
 
 public class RottingOranges {
@@ -67,68 +68,34 @@ public class RottingOranges {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int orangesRotting(int[][] grid) {
-            Queue<Integer> queue = new LinkedList<>();
-            Map<Integer, Integer> map = new HashMap<>();
-            int m = grid.length;
-            int n = grid[0].length;
-            int res = 0, sum = 0;
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (grid[i][j] == 2) {
-                        int pos = i * n + j;
-                        queue.add(pos);
-                        map.put(pos, 0);
-                    } else if (grid[i][j] == 1) {
-                        sum++;
+            int x = grid.length, y = grid[0].length;
+            int[][] dir = new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+            Deque<Pair<Integer, Integer>> q = new LinkedList<>();
+            for (int i = 0; i < x; i++) {
+                for (int j = 0; j < y; j++) {
+                    if (grid[i][j] == 2) q.add(new Pair<>(i * y + j, 0));
+                }
+            }
+            Integer value = 0;
+            while (!q.isEmpty()) {
+                Pair<Integer, Integer> p = q.poll();
+                Integer position = p.getKey();
+                value = p.getValue();
+                int i = position / y, j = position % y;
+                for (int[] d : dir) {
+                    int a = i + d[0], b = j + d[1];
+                    if (a >= 0 && a < x && b >= 0 && b < y && grid[a][b] == 1) {
+                        grid[a][b] =0;
+                        q.add(new Pair<>(a * y + b, value + 1));
                     }
                 }
             }
-            /*
-            可以用数组+for循环进行上下左右移动的模拟
-            int[] dr = new int[]{-1, 0, 1, 0};
-            int[] dc = new int[]{0, -1, 0, 1};
-            */
-            while (!queue.isEmpty()) {
-                int num = queue.poll();
-                int i = num / n;
-                int j = num % n;
-                int pos = i * n + j;
-                if (i > 0 && grid[i - 1][j] == 1) {
-                    int np = (i - 1) * n + j;
-                    grid[i - 1][j] = 2;
-                    queue.add(np);
-                    res = map.get(pos) + 1;
-                    map.put(np, res);
-                    sum--;
-                }
-                if (j > 0 && grid[i][j - 1] == 1) {
-                    int np = i * n + j - 1;
-                    grid[i][j - 1] = 2;
-                    queue.add(np);
-                    res = map.get(pos) + 1;
-                    map.put(np, res);
-                    sum--;
-                }
-                if (i < m - 1 && grid[i + 1][j] == 1) {
-                    int np = (i + 1) * n + j;
-                    grid[i + 1][j] = 2;
-                    queue.add(np);
-                    res = map.get(pos) + 1;
-                    map.put(np, res);
-                    sum--;
-                }
-                if (j < n - 1 && grid[i][j + 1] == 1) {
-                    int np = i * n + j + 1;
-                    grid[i][j + 1] = 2;
-                    queue.add(np);
-                    res = map.get(pos) + 1;
-                    map.put(np, res);
-                    sum--;
+            for (int i = 0; i < x; i++) {
+                for (int j = 0; j < y; j++) {
+                    if (grid[i][j] == 1) return -1;
                 }
             }
-            if (sum == 0) return res;
-            else return -1;
-
+            return value;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
