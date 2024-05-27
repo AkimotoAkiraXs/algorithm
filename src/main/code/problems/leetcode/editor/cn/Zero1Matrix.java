@@ -46,6 +46,8 @@
 package problems.leetcode.editor.cn;
 
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class Zero1Matrix {
     public static void main(String[] args) {
@@ -56,11 +58,39 @@ public class Zero1Matrix {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        int n, m;
-        int num, min;
-        int[][] map;
 
+        // bfs
+        public int[][] updateMatrix_bfs(int[][] mat) {
+            int x = mat.length, y = mat[0].length;
+            int[][] dir = new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+            int[][] res = new int[x][y];
+            for (int i = 0; i < x; i++) Arrays.fill(res[i], Integer.MAX_VALUE);
+            Deque<Integer> q = new LinkedList<>();
+            for (int i = 0; i < x; i++) {
+                for (int j = 0; j < y; j++) {
+                    if (mat[i][j] == 0) {
+                        q.add(i * y + j);
+                        res[i][j] = 0;
+                    }
+                }
+            }
 
+            while (!q.isEmpty()) {
+                Integer position = q.poll();
+                int i = position / y, j = position % y;
+                for (int[] d : dir) {
+                    int a = i + d[0], b = j + d[1];
+                    if (a >= 0 && a < x && b >= 0 && b < y && mat[a][b] == 1) {
+                        mat[a][b] = 0;
+                        res[a][b] = res[i][j] + 1;
+                        q.add(a * y + b);
+                    }
+                }
+            }
+            return res;
+        }
+
+        // dp
         public int[][] updateMatrix(int[][] mat) {
             int m = mat.length;
             int n = mat[0].length;
