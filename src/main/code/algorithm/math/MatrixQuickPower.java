@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.math;
 
 import problems.leetcode.editor.cn.ApplyOperationsToMaximizeScore;
 import problems.leetcode.editor.cn.NThTribonacciNumber;

@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.math;
 
 /**
  * Euclidean algorithm: 又叫欧几里得算法、辗转相除法，用于求两个正整数的最大公约数(Greatest Common Divisor)的算法。
