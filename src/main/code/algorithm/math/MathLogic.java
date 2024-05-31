@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.math;
 
 import problems.leetcode.editor.cn.FindSubstringWithGivenHashValue;
 import problems.leetcode.editor.cn.PerfectSquares;

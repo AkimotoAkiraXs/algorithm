@@ -1,5 +1,8 @@
 package algorithm;
 
+import problems.leetcode.editor.cn.MaximumSumOf3NonOverlappingSubarrays;
+import problems.leetcode.editor.cn.MaximumSumOfTwoNonOverlappingSubarrays;
+
 /**
  * 滑动窗口
  * <p>
@@ -20,9 +23,9 @@ public class SlidingWindow {
     /**
      * 滑动窗口模板问题，求几个不重叠子数组的最大和
      * <p>
-     * {@link leetcode.editor.cn.MaximumSumOf3NonOverlappingSubarrays Lc689 三个无重叠子数组的最大和}
+     * {@link MaximumSumOf3NonOverlappingSubarrays Lc689 三个无重叠子数组的最大和}
      * <p>
-     * {@link leetcode.editor.cn.MaximumSumOfTwoNonOverlappingSubarrays Lc1031 两个无重叠子数组的最大和}
+     * {@link MaximumSumOfTwoNonOverlappingSubarrays Lc1031 两个无重叠子数组的最大和}
      */
     class MaximumSumOfSomeSubarrys {
         // 单个子数组最大和：向左移动，新增左值减去右值，取最大

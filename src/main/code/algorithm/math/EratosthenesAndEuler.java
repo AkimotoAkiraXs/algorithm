@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.math;
 
 /**
  * Q：快速获取n类素数 <br/>
