@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.dp;
 
 import java.util.Arrays;
 import problems.leetcode.editor.cn.LongestCommonSubsequence;
