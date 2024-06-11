@@ -1,4 +1,4 @@
-//给你一个整数 n，请你判断该整数是否是 2 的幂次方。如果是，返回 true ；否则，返回 false 。 
+// 给你一个整数 n，请你判断该整数是否是 2 的幂次方。如果是，返回 true ；否则，返回 false 。
 //
 // 如果存在一个整数 x 使得 n == 2ˣ ，则认为 n 是 2 的幂次方。 
 //
@@ -7,38 +7,38 @@
 // 示例 1： 
 //
 // 
-//输入：n = 1
-//输出：true
-//解释：2⁰ = 1
+// 输入：n = 1
+// 输出：true
+// 解释：2⁰ = 1
 // 
 //
 // 示例 2： 
 //
 // 
-//输入：n = 16
-//输出：true
-//解释：2⁴ = 16
+// 输入：n = 16
+// 输出：true
+// 解释：2⁴ = 16
 // 
 //
 // 示例 3： 
 //
 // 
-//输入：n = 3
-//输出：false
+// 输入：n = 3
+// 输出：false
 // 
 //
 // 示例 4： 
 //
 // 
-//输入：n = 4
-//输出：true
+// 输入：n = 4
+// 输出：true
 // 
 //
 // 示例 5： 
 //
 // 
-//输入：n = 5
-//输出：false
+// 输入：n = 5
+// 输出：false
 // 
 //
 // 
@@ -66,18 +66,19 @@ package problems.leetcode.editor.cn;
  * @since 2021-12-14 11:29:11
  */
 public class PowerOfTwo {
+
     public static void main(String[] args) {
         Solution solution = new PowerOfTwo().new Solution();
         System.out.println();
     }
 
-    //leetcode submit region begin(Prohibit modification and deletion)
+    // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public boolean isPowerOfTwo(int n) {
-            if (n < 0 )return false;
-            return Long.bitCount(n) == 1;
+            return n > 0 && Long.bitCount(n) == 1;
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+// leetcode submit region end(Prohibit modification and deletion)
 
 }
