@@ -45,15 +45,12 @@ public class BinarySearch {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int search(int[] nums, int target) {
-            int x = 0, y = nums.length - 1;
-            while (x <= y) {
-                //(x+y)/2的变形版，防止内存溢出
-                int k = x + (y - x) / 2;
-                if (nums[k] == target) {
-                    return k;
-                }
-                if (nums[k] > target) y = k - 1;
-                else x = k + 1;
+            int l = 0, r = nums.length;
+            while (l < r) {
+                int mid = l + (r - l >> 1);
+                if (nums[mid] == target) return mid;
+                if (nums[mid] < target) l = mid + 1;
+                else r = mid;
             }
             return -1;
         }
