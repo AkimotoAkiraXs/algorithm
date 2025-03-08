@@ -54,7 +54,7 @@ public class TwoSumIiInputArrayIsSorted {
 
     public static void main(String[] args) {
         Solution solution = new TwoSumIiInputArrayIsSorted().new Solution();
-        System.out.println("Hello world");
+        solution.twoSum(new int[]{2, 7, 11, 15}, 9);
     }
 
     // leetcode submit region begin(Prohibit modification and deletion)
@@ -68,6 +68,18 @@ public class TwoSumIiInputArrayIsSorted {
                 if (numbers[l] + numbers[r] == target) return new int[]{l + 1, r + 1};
             }
             return null;
+        }
+
+        public int[] twoSum_BinarySearch(int[] numbers, int target) {
+            for (int i = 0; ; i++) {
+                int l = i + 1, r = numbers.length;
+                while (l < r) {
+                    int m = l + r >> 1;
+                    if (numbers[m] < target - numbers[i]) l = m + 1;
+                    else r = m;
+                }
+                if (l < numbers.length && numbers[l] == target - numbers[i]) return new int[]{i + 1, l + 1};
+            }
         }
 
         public int[] twoSum(int[] numbers, int target) {
