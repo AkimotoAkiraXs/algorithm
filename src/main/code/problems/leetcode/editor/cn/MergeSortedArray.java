@@ -11,23 +11,19 @@ package problems.leetcode.editor.cn;
 public class MergeSortedArray {
     public static void main(String[] args) {
         Solution solution = new MergeSortedArray().new Solution();
-        System.out.println();
+        solution.merge(new int[]{0}, 0, new int[]{1}, 1);
     }
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         // O(1)空间复杂度 技巧题：正难则反，倒着插入
         public void merge(int[] nums1, int m, int[] nums2, int n) {
-            int index = m + n - 1;
-            m--;
-            n--;
-            while (m >= 0 && n >= 0) {
-                if (nums1[m] > nums2[n]) nums1[index--] = nums1[m--];
-                else nums1[index--] = nums2[n--];
+            int p = m - 1, q = n - 1;
+            for (int i = m + n - 1; i >= 0; i--) {
+                if (p < 0) nums1[i] = nums2[q--];
+                else if (q < 0 || nums1[p] > nums2[q]) nums1[i] = nums1[p--];
+                else nums1[i] = nums2[q--];
             }
-            while (m >= 0) nums1[index--] = nums1[m--];
-            while (n >= 0) nums1[index--] = nums2[n--];
-
         }
     }
 // leetcode submit region end(Prohibit modification and deletion)
